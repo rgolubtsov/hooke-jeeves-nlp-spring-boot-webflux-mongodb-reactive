@@ -15,6 +15,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
 /**
  * The <code>HookeJeeves</code> class contains methods for solving a nonlinear
  * optimization problem using the algorithm of Hooke and Jeeves.
+ *
  * @version 0.1
  * @since   hooke-jeeves 0.1
  */
