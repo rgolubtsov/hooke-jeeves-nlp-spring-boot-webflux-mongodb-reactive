@@ -27,10 +27,8 @@ public final class Rosenbrock {
     private static final double RHO_BEGIN = 0.5;
 
     /** Helper constants. */
-    private static final double ONE_HUNDRED_POINT_ZERO = 100.0;
-    private static final double ONE_POINT_ZERO         =   1.0;
-    private static final int    TWO                    =   2;
-    private static final double MINUS_ONE_POINT_TWO    =  -1.2;
+    private static final int    TWO                 =  2;
+    private static final double MINUS_ONE_POINT_TWO = -1.2;
 
     /**
      * The user-supplied objective function f(x,n).
@@ -48,14 +46,16 @@ public final class Rosenbrock {
         double b;
         double c;
 
-        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1);
+        // funevals++; --------------------------------------------------+
+        //                                                               |
+        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1); // <---+
 
-        a = x[HookeJeeves.INDEX_ZERO];
-        b = x[HookeJeeves.INDEX_ONE ];
+        a = x[0];
+        b = x[1];
 
-        c = ONE_HUNDRED_POINT_ZERO * (b - (a * a)) * (b - (a * a));
+        c = 100.0 * (b - (a * a)) * (b - (a * a));
 
-        return (c + ((ONE_POINT_ZERO - a) * (ONE_POINT_ZERO - a)));
+        return (c + ((1.0 - a) * (1.0 - a)));
     }
 }
 

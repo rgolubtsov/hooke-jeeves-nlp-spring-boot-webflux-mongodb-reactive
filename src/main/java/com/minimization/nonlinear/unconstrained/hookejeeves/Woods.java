@@ -35,15 +35,9 @@ public final class Woods {
     private static final double RHO_WOODS = 0.6;
 
     /** Helper constants. */
-    private static final int    INDEX_TWO   =   2;
-    private static final int    INDEX_THREE =   3;
-    private static final int    ONE_HUNDRED = 100;
-    private static final int    NINETY      =  90;
-    private static final int    TEN         =  10;
-    private static final double TEN_POINT   =  10.;
-    private static final int    FOUR        =   4;
-    private static final int    MINUS_THREE =  -3;
-    private static final int    MINUS_ONE   =  -1;
+    private static final int FOUR        =  4;
+    private static final int MINUS_THREE = -3;
+    private static final int MINUS_ONE   = -1;
 
     /**
      * The user-supplied objective function f(x,n).
@@ -60,30 +54,31 @@ public final class Woods {
         double s1;
         double s2;
         double s3;
+
         double t1;
         double t2;
         double t3;
         double t4;
         double t5;
 
-        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1);
+        // funevals++; --------------------------------------------------+
+        //                                                               |
+        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1); // <---+
 
-        s1 = x[HookeJeeves.INDEX_ONE] - x[HookeJeeves.INDEX_ZERO]
-                                      * x[HookeJeeves.INDEX_ZERO];
-        s2 = 1                        - x[HookeJeeves.INDEX_ZERO];
-        s3 = x[HookeJeeves.INDEX_ONE] - 1;
+        s1 = x[1] - x[0] * x[0];
+        s2 = 1    - x[0];
+        s3 = x[1] - 1;
 
-        t1 = x[INDEX_THREE] - x[INDEX_TWO]
-                            * x[INDEX_TWO];
-        t2 = 1              - x[INDEX_TWO];
-        t3 = x[INDEX_THREE] - 1;
+        t1 = x[3] - x[2] * x[2];
+        t2 = 1    - x[2];
+        t3 = x[3] - 1;
 
         t4 = s3 + t3;
         t5 = s3 - t3;
 
-        return (ONE_HUNDRED * (s1 * s1) + s2 * s2
-                   + NINETY * (t1 * t1) + t2 * t2
-                   +    TEN * (t4 * t4) + t5 * t5 / TEN_POINT);
+        return (100 * (s1 * s1) + s2 * s2
+               + 90 * (t1 * t1) + t2 * t2
+               + 10 * (t4 * t4) + t5 * t5 / 10.);
     }
 }
 
