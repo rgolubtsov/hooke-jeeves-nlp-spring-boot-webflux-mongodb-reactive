@@ -29,11 +29,6 @@ public class HookeJeeves {
     /** Constant. The maximum number of iterations. */
     public static final int IMAX = 5000;
 
-    /** Helper constants. */
-    public  static final int    INDEX_ZERO      = 0;
-    public  static final int    INDEX_ONE       = 1;
-    private static final double ZERO_POINT_FIVE = 0.5;
-
     /** The number of function evaluations. */
     private static int funevals = 0;
 
@@ -246,9 +241,7 @@ public class HookeJeeves {
                 for (i = 0; i < nvars; i++) {
                     keep = 1;
 
-                    if (Math.abs(newx[i] - xbefore[i])
-                        > (ZERO_POINT_FIVE * Math.abs(delta[i]))) {
-
+                    if (Math.abs(newx[i]-xbefore[i])>(0.5*Math.abs(delta[i]))){
                         break;
                     } else {
                         keep = 0;
