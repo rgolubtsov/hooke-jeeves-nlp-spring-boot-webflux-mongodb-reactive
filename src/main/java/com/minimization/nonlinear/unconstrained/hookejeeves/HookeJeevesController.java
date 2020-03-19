@@ -27,24 +27,22 @@ public class HookeJeevesController {
         @RequestParam(name="startpt1", defaultValue="1.0" ) final String startpt1,
         @RequestParam(name="rho",      defaultValue="0.5" ) final String rho) {
 
-        System.out.println("==> nvars="    + nvars    + "\n"
+        System.out.println("==>    nvars=" + nvars    + "\n"
                          + "==> startpt0=" + startpt0 + "\n"
                          + "==> startpt1=" + startpt1 + "\n"
-                         + "==> rho="      + rho);
+                         + "==>      rho=" + rho);
     }
 
     @GetMapping("solve")
     public void solve_the_problem_get(
-        @RequestParam(name="obj_func",
-              defaultValue="f-of-x") final String obj_func) {
+        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func) {
 
         System.out.println("==> obj_func=" + obj_func);
     }
 
     @PostMapping("solve")
     public void solve_the_problem_post(
-        @RequestParam(name="obj_func",
-              defaultValue="f-of-x") final String obj_func) {
+        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func) {
 
         solve_the_problem_get(obj_func);
     }
