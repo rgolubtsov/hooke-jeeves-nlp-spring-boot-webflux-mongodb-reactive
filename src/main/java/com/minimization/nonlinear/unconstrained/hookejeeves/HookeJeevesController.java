@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.bson.Document;
+
+/** The controller class of the microservice. */
 @RestController
 public class HookeJeevesController {
     @PutMapping("store")
@@ -31,6 +34,17 @@ public class HookeJeevesController {
                          + "==> startpt0=" + startpt0 + "\n"
                          + "==> startpt1=" + startpt1 + "\n"
                          + "==>      rho=" + rho);
+
+        // Creating a new document containing initial guess data.
+        Document document = new Document();
+
+        document.append("nvars",    nvars   )
+                .append("startpt0", startpt0)
+                .append("startpt1", startpt1)
+                .append("rho",      rho     );
+
+        // Putting initial guess data to the database.
+        HookeJeevesApplication.collection.insertOne(document);
     }
 
     @GetMapping("solve")

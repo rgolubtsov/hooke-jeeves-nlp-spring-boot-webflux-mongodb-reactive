@@ -15,9 +15,35 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
+
+/** The startup class of the microservice. */
 @SpringBootApplication
 public class HookeJeevesApplication {
+    /** Constant: The database name to connect to. */
+    private static final String TEST_DATABASE = "test";
+
+    /** Constant: The collection name to get the collection. */
+    private static final String INITIAL_DATA_COLL = "hooke_initial_guess_data";
+
+    /** The collection object to store data to. */
+    static MongoCollection collection;
+
+    /**
+     * The microservice entry point.
+     *
+     * @param args The array of command-line arguments.
+     */
     public static void main(final String[] args) {
+        // Making the connection to the database and getting the collection.
+        MongoClient   client   = MongoClients.create();
+        MongoDatabase database = client.getDatabase(TEST_DATABASE);
+
+        collection = database.getCollection(INITIAL_DATA_COLL);
+
         SpringApplication.run(HookeJeevesApplication.class, args);
     }
 }
