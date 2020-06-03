@@ -86,17 +86,18 @@ public class HookeJeevesController {
     }
 
     @GetMapping("solve")
-    public void solve_the_problem_get(
-        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func) {
+    public void solve_the_problem(
+        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func,
+                                                              final Object _) {
 
         System.out.println("==> obj_func=" + obj_func);
     }
 
     @PostMapping("solve")
-    public void solve_the_problem_post(
+    public void solve_the_problem(
         @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func) {
 
-        solve_the_problem_get(obj_func);
+        solve_the_problem(obj_func, null);
     }
 }
 
