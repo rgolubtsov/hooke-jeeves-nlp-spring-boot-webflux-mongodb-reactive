@@ -3,9 +3,9 @@
  * HookeJeevesApplicationTests.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.1
+ * Microservice. Version 0.0.1
  * ============================================================================
- * Written by Radislav (Radicchio) Golubtsov, 2020
+ * Copyright (C) 2020 Radislav (Radicchio) Golubtsov
  *
  * (See the LICENSE file at the top of the source tree.)
  */

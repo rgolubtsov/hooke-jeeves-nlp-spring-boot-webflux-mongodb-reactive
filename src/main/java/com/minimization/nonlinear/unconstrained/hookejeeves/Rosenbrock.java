@@ -3,7 +3,7 @@
  * Rosenbrock.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.1
+ * Microservice. Version 0.0.1
  * ============================================================================
  * Written by Radislav (Radicchio) Golubtsov, 2020
  *
@@ -19,8 +19,8 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * <br />The objective function in this case is the Rosenbrock's parabolic
  * valley function.
  *
- * @version 0.1
- * @since   hooke-jeeves 0.1
+ * @version 0.0.1
+ * @since   hooke-jeeves 0.0.1
  */
 public final class Rosenbrock {
     /** Constant. The stepsize geometric shrink. */
