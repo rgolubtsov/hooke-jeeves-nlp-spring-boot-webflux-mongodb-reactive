@@ -117,7 +117,7 @@ public class HookeJeevesController {
 
     @GetMapping(REST_SOLVE)
     public void solve_the_problem(
-        @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx,
+        @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
                                                         final Object _) {
 
         int nvars;
@@ -129,6 +129,17 @@ public class HookeJeevesController {
         double   rho;
         double   epsilon;
         double[] endpt   = new double[HookeJeeves.VARS];
+
+               if (fx.compareTo(ROSENBROCK) == 0) {
+            // TODO: Implement solving a nonlinear optimization problem
+            //       when the objective function is the Rosenbrock's parabolic
+            //       valley function.
+        } else if (fx.compareTo(WOODS     ) == 0) {
+            // TODO: Implement solving a nonlinear optimization problem
+            //       when the objective function is so-called "Woods" function.
+        } else {
+            fx = null;
+        }
 
         System.out.println(FX + EQUALS + fx);
     }
