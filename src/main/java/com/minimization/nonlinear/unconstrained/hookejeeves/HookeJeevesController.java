@@ -46,8 +46,9 @@ public class HookeJeevesController {
     private static final String RHO_BEGIN_STR       =  "0.5";
     private static final String RHO_WOODS_STR       =  "0.6";
 
-    private static final String OBJ_FUNC = "obj_func";
-    private static final String F_OF_X   = "f-of-x";
+    private static final String FX         = "fx";
+    private static final String ROSENBROCK = "rosenbrock";
+    private static final String WOODS      = "woods";
 
     private static final String EQUALS   = "=";
     private static final String NEW_LINE = System.lineSeparator();
@@ -116,17 +117,27 @@ public class HookeJeevesController {
 
     @GetMapping(REST_SOLVE)
     public void solve_the_problem(
-        @RequestParam(name=OBJ_FUNC, defaultValue=F_OF_X) final String obj_func,
-                                                          final Object _) {
+        @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx,
+                                                        final Object _) {
 
-        System.out.println(OBJ_FUNC + EQUALS + obj_func);
+        int nvars;
+        int itermax;
+        int jj;
+        int i;
+
+        double[] startpt = new double[HookeJeeves.VARS];
+        double   rho;
+        double   epsilon;
+        double[] endpt   = new double[HookeJeeves.VARS];
+
+        System.out.println(FX + EQUALS + fx);
     }
 
     @PostMapping(REST_SOLVE)
     public void solve_the_problem(
-        @RequestParam(name=OBJ_FUNC, defaultValue=F_OF_X) final String obj_func) {
+        @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx) {
 
-        solve_the_problem(obj_func, null);
+        solve_the_problem(fx, null);
     }
 }
 
