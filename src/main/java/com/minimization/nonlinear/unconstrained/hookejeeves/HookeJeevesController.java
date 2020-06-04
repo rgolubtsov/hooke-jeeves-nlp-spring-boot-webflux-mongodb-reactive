@@ -23,37 +23,66 @@ import org.bson.Document;
 /** The controller class of the microservice. */
 @RestController
 public class HookeJeevesController {
-    @PutMapping("store-rosenbrock")
-    public void store_initial_guess_data(
-        @RequestParam(name="nvars",    defaultValue="2"   ) final String nvars,
-        @RequestParam(name="startpt0", defaultValue="-1.2") final String startpt0,
-        @RequestParam(name="startpt1", defaultValue="1.0" ) final String startpt1,
-        @RequestParam(name="rho",      defaultValue="0.5" ) final String rho) {
+    // Helper constants.
+    private static final String REST_STORE_ROSENBROCK = "store-rosenbrock";
+    private static final String REST_STORE_WOODS      = "store-woods";
+    private static final String REST_SOLVE            = "solve";
 
-        System.out.println("==>    nvars=" + nvars    + "\n"
-                         + "==> startpt0=" + startpt0 + "\n"
-                         + "==> startpt1=" + startpt1 + "\n"
-                         + "==>      rho=" + rho);
+    private static final String NVARS    = "nvars";
+    private static final String STARTPT0 = "startpt0";
+    private static final String STARTPT1 = "startpt1";
+    private static final String STARTPT2 = "startpt2";
+    private static final String STARTPT3 = "startpt3";
+    private static final String RHO      = "rho";
+
+    private static final String TWO                 =  "2";
+    private static final String MINUS_ONE_POINT_TWO = "-1.2";
+    private static final String ONE_POINT_ZERO      =  "1.0";
+
+    private static final String FOUR                =  "4";
+    private static final String MINUS_THREE         = "-3";
+    private static final String MINUS_ONE           = "-1";
+
+    private static final String RHO_BEGIN_STR       =  "0.5";
+    private static final String RHO_WOODS_STR       =  "0.6";
+
+    private static final String OBJ_FUNC = "obj_func";
+    private static final String F_OF_X   = "f-of-x";
+
+    private static final String EQUALS   = "=";
+    private static final String NEW_LINE = System.lineSeparator();
+
+    @PutMapping(REST_STORE_ROSENBROCK)
+    public void store_initial_guess_data(
+        @RequestParam(name=NVARS,    defaultValue=TWO                ) final String nvars,
+        @RequestParam(name=STARTPT0, defaultValue=MINUS_ONE_POINT_TWO) final String startpt0,
+        @RequestParam(name=STARTPT1, defaultValue=ONE_POINT_ZERO     ) final String startpt1,
+        @RequestParam(name=RHO,      defaultValue=RHO_BEGIN_STR      ) final String rho) {
+
+        System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
+                         + STARTPT0 + EQUALS + startpt0 + NEW_LINE
+                         + STARTPT1 + EQUALS + startpt1 + NEW_LINE
+                         + RHO      + EQUALS + rho);
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
     }
 
-    @PutMapping("store-woods")
+    @PutMapping(REST_STORE_WOODS)
     public void store_initial_guess_data(
-        @RequestParam(name="nvars",    defaultValue="4"  ) final String nvars,
-        @RequestParam(name="startpt0", defaultValue="-3" ) final String startpt0,
-        @RequestParam(name="startpt1", defaultValue="-1" ) final String startpt1,
-        @RequestParam(name="startpt2", defaultValue="-3" ) final String startpt2,
-        @RequestParam(name="startpt3", defaultValue="-1" ) final String startpt3,
-        @RequestParam(name="rho",      defaultValue="0.6") final String rho) {
+        @RequestParam(name=NVARS,    defaultValue=FOUR         ) final String nvars,
+        @RequestParam(name=STARTPT0, defaultValue=MINUS_THREE  ) final String startpt0,
+        @RequestParam(name=STARTPT1, defaultValue=MINUS_ONE    ) final String startpt1,
+        @RequestParam(name=STARTPT2, defaultValue=MINUS_THREE  ) final String startpt2,
+        @RequestParam(name=STARTPT3, defaultValue=MINUS_ONE    ) final String startpt3,
+        @RequestParam(name=RHO,      defaultValue=RHO_WOODS_STR) final String rho) {
 
-        System.out.println("==>    nvars=" + nvars    + "\n"
-                         + "==> startpt0=" + startpt0 + "\n"
-                         + "==> startpt1=" + startpt1 + "\n"
-                         + "==> startpt2=" + startpt2 + "\n"
-                         + "==> startpt3=" + startpt3 + "\n"
-                         + "==>      rho=" + rho);
+        System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
+                         + STARTPT0 + EQUALS + startpt0 + NEW_LINE
+                         + STARTPT1 + EQUALS + startpt1 + NEW_LINE
+                         + STARTPT2 + EQUALS + startpt2 + NEW_LINE
+                         + STARTPT3 + EQUALS + startpt3 + NEW_LINE
+                         + RHO      + EQUALS + rho);
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, startpt2, startpt3, rho);
@@ -70,32 +99,32 @@ public class HookeJeevesController {
         // Creating a new document containing initial guess data.
         Document document = new Document();
 
-        document.append("nvars",    nvars   )
-                .append("startpt0", startpt0)
-                .append("startpt1", startpt1);
+        document.append(NVARS,    nvars   )
+                .append(STARTPT0, startpt0)
+                .append(STARTPT1, startpt1);
 
         if ((startpt2 != null) && (startpt3 != null)) {
-            document.append("startpt2", startpt2)
-                    .append("startpt3", startpt3);
+            document.append(STARTPT2, startpt2)
+                    .append(STARTPT3, startpt3);
         }
 
-        document.append("rho", rho);
+        document.append(RHO, rho);
 
         // Putting initial guess data to the database.
         HookeJeevesApplication.collection.insertOne(document);
     }
 
-    @GetMapping("solve")
+    @GetMapping(REST_SOLVE)
     public void solve_the_problem(
-        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func,
-                                                              final Object _) {
+        @RequestParam(name=OBJ_FUNC, defaultValue=F_OF_X) final String obj_func,
+                                                          final Object _) {
 
-        System.out.println("==> obj_func=" + obj_func);
+        System.out.println(OBJ_FUNC + EQUALS + obj_func);
     }
 
-    @PostMapping("solve")
+    @PostMapping(REST_SOLVE)
     public void solve_the_problem(
-        @RequestParam(name="obj_func", defaultValue="f-of-x") final String obj_func) {
+        @RequestParam(name=OBJ_FUNC, defaultValue=F_OF_X) final String obj_func) {
 
         solve_the_problem(obj_func, null);
     }
