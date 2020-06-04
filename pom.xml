@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * pom.xml
+ * ============================================================================
+ * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
+ * Microservice. Version 0.0.1
+ * ============================================================================
+ * Copyright (C) 2020 Radislav (Radicchio) Golubtsov
+ *
+ * (See the LICENSE file at the top of the source tree.)
+-->
 
 <project         xmlns="http://maven.apache.org/POM/4.0.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
