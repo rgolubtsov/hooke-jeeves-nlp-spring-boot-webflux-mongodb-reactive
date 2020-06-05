@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.bson.Document;
 
+import static com.mongodb.client.model.Filters.*;
+
 /** The controller class of the microservice. */
 @RestController
 public class HookeJeevesController {
@@ -120,28 +122,81 @@ public class HookeJeevesController {
         @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
                                                         final Object _) {
 
-        int nvars;
+        Document document;
+
+        int nvars=0;
         int itermax;
         int jj;
         int i;
 
         double[] startpt = new double[HookeJeeves.VARS];
-        double   rho;
+        double   rho=.0;
         double   epsilon;
         double[] endpt   = new double[HookeJeeves.VARS];
 
+        Class objfun_cls = null;
+
                if (fx.compareTo(ROSENBROCK) == 0) {
+            // $ mongo
+            // > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
+            document = (Document) HookeJeevesApplication.collection
+                .find(eq(NVARS, TWO))
+                .sort(new Document("_id", -1))
+                .first();
+
+            nvars      = new Integer(document.getString(NVARS   )).intValue   ();
+            startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
+            startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
+            rho        = new Double (document.getString(RHO     )).doubleValue();
+
+            System.out.println(NVARS    + EQUALS + nvars      + NEW_LINE
+                             + STARTPT0 + EQUALS + startpt[0] + NEW_LINE
+                             + STARTPT1 + EQUALS + startpt[1] + NEW_LINE
+                             + RHO      + EQUALS + rho);
+
             // TODO: Implement solving a nonlinear optimization problem
             //       when the objective function is the Rosenbrock's parabolic
             //       valley function.
+            objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
+            // $ mongo
+            // > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
+            document = (Document) HookeJeevesApplication.collection
+                .find(eq(NVARS, FOUR))
+                .sort(new Document("_id", -1))
+                .first();
+
+            nvars      = new Integer(document.getString(NVARS   )).intValue   ();
+            startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
+            startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
+            startpt[2] = new Double (document.getString(STARTPT2)).doubleValue();
+            startpt[3] = new Double (document.getString(STARTPT3)).doubleValue();
+            rho        = new Double (document.getString(RHO     )).doubleValue();
+
+            System.out.println(NVARS    + EQUALS + nvars      + NEW_LINE
+                             + STARTPT0 + EQUALS + startpt[0] + NEW_LINE
+                             + STARTPT1 + EQUALS + startpt[1] + NEW_LINE
+                             + STARTPT2 + EQUALS + startpt[2] + NEW_LINE
+                             + STARTPT3 + EQUALS + startpt[3] + NEW_LINE
+                             + RHO      + EQUALS + rho);
+
             // TODO: Implement solving a nonlinear optimization problem
             //       when the objective function is so-called "Woods" function.
+            objfun_cls = Woods.class;
         } else {
             fx = null;
         }
 
         System.out.println(FX + EQUALS + fx);
+
+        itermax = HookeJeeves.IMAX;
+        epsilon = HookeJeeves.EPSMIN;
+
+        jj = new HookeJeeves()
+            .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
+
+        System.out.println("\n\n\nHOOKE USED " + jj
+                         + " ITERATIONS, AND RETURNED");
     }
 
     @PostMapping(REST_SOLVE)
