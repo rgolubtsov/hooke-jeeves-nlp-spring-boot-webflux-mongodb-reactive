@@ -156,9 +156,6 @@ public class HookeJeevesController {
                              + STARTPT1 + EQUALS + startpt[1] + NEW_LINE
                              + RHO      + EQUALS + rho);
 
-            // TODO: Implement solving a nonlinear optimization problem
-            //       when the objective function is the Rosenbrock's parabolic
-            //       valley function.
             objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
             // $ mongo
@@ -182,8 +179,6 @@ public class HookeJeevesController {
                              + STARTPT3 + EQUALS + startpt[3] + NEW_LINE
                              + RHO      + EQUALS + rho);
 
-            // TODO: Implement solving a nonlinear optimization problem
-            //       when the objective function is so-called "Woods" function.
             objfun_cls = Woods.class;
         } else {
             objfun_cls = null;
