@@ -24,11 +24,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  */
 public final class Rosenbrock {
     /** Constant. The stepsize geometric shrink. */
-    private static final double RHO_BEGIN = 0.5;
-
-    /** Helper constants. */
-    private static final int    TWO                 =  2;
-    private static final double MINUS_ONE_POINT_TWO = -1.2;
+    public static final double RHO_BEGIN = 0.5;
 
     /**
      * The user-supplied objective function f(x,n).

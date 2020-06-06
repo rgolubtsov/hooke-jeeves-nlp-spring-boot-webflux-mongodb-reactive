@@ -32,12 +32,7 @@ public final class Woods {
      * when rho = 0.5, but fares poorly with rho = 0.6, and better again
      * with rho = 0.8.
      */
-    private static final double RHO_WOODS = 0.6;
-
-    /** Helper constants. */
-    private static final int FOUR        =  4;
-    private static final int MINUS_THREE = -3;
-    private static final int MINUS_ONE   = -1;
+    public static final double RHO_WOODS = 0.6;
 
     /**
      * The user-supplied objective function f(x,n).
