@@ -134,7 +134,9 @@ public class HookeJeevesController {
         double   epsilon;
         double[] endpt   = new double[HookeJeeves.VARS];
 
-        Class objfun_cls = null;
+        Class objfun_cls;
+
+        System.out.println(FX + EQUALS + fx);
 
                if (fx.compareTo(ROSENBROCK) == 0) {
             // $ mongo
@@ -184,19 +186,30 @@ public class HookeJeevesController {
             //       when the objective function is so-called "Woods" function.
             objfun_cls = Woods.class;
         } else {
-            fx = null;
+            objfun_cls = null;
         }
-
-        System.out.println(FX + EQUALS + fx);
 
         itermax = HookeJeeves.IMAX;
         epsilon = HookeJeeves.EPSMIN;
 
-        jj = new HookeJeeves()
-            .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
+        if (objfun_cls != null) {
+            jj = new HookeJeeves()
+                .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
 
-        System.out.println("\n\n\nHOOKE USED " + jj
-                         + " ITERATIONS, AND RETURNED");
+            System.out.println("\n\n\nHOOKE USED " + jj
+                             + " ITERATIONS, AND RETURNED");
+
+            for (i = 0; i < nvars; i++) {
+                System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
+            }
+        } else {
+            // TODO: Implement returning a specific response
+            //       when the objective function is not defined.
+        }
+
+        if (fx.compareTo(WOODS) == 0) {
+            System.out.println("True answer: f(1, 1, 1, 1) = 0.");
+        }
     }
 
     @PostMapping(REST_SOLVE)
