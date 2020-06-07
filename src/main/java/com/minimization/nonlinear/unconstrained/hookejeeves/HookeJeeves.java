@@ -30,25 +30,7 @@ public class HookeJeeves {
     public static final int IMAX = 5000;
 
     /** The number of function evaluations. */
-    private static int funevals = 0;
-
-    /**
-     * Getter for <code>funevals</code>.
-     *
-     * @return The number of function evaluations.
-     */
-    public static int get_funevals() {
-        return funevals;
-    }
-
-    /**
-     * Setter for <code>funevals</code>.
-     *
-     * @param __funevals The number of function evaluations.
-     */
-    public static void set_funevals(final int __funevals) {
-        funevals = __funevals;
-    }
+    private int funevals = 0;
 
     /**
      * Helper method.
@@ -91,7 +73,7 @@ public class HookeJeeves {
                 ftmp =      Woods.f(z, nvars);
             } else {
                 ftmp = 0;
-            }
+            } funevals++;
 
             if (ftmp < minf) {
                 minf = ftmp;
@@ -105,7 +87,7 @@ public class HookeJeeves {
                     ftmp =      Woods.f(z, nvars);
                 } else {
                     ftmp = 0;
-                }
+                } funevals++;
 
                 if (ftmp < minf) {
                     minf = ftmp;
@@ -180,7 +162,7 @@ public class HookeJeeves {
             fbefore =      Woods.f(newx, nvars);
         } else {
             fbefore = 0;
-        }
+        } funevals++;
 
         newf = fbefore;
 

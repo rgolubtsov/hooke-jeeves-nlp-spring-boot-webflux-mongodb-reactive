@@ -42,10 +42,6 @@ public final class Rosenbrock {
         double b;
         double c;
 
-        // funevals++; --------------------------------------------------+
-        //                                                               |
-        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1); // <---+
-
         a = x[0];
         b = x[1];
 
