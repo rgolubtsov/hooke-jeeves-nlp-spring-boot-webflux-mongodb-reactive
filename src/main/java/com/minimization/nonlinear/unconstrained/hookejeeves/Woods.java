@@ -56,10 +56,6 @@ public final class Woods {
         double t4;
         double t5;
 
-        // funevals++; --------------------------------------------------+
-        //                                                               |
-        HookeJeeves.set_funevals(HookeJeeves.get_funevals() + 1); // <---+
-
         s1 = x[1] - x[0] * x[0];
         s2 = 1    - x[0];
         s3 = x[1] - 1;
