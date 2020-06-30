@@ -1,2 +1,4 @@
-# hooke-jeeves-nlp-spring-boot-webflux-mongodb-reactive
-The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice.
+# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice
+
+**A Spring Boot-based application, designed and intended to run as a microservice,
+<br />implementing the nonlinear unconstrained minimization algorithm of Hooke and Jeeves**
