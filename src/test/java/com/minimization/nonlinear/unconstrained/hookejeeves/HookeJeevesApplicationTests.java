@@ -15,8 +15,10 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 
+/** The test class for the microservice. */
 @SpringBootTest
 class HookeJeevesApplicationTests {
+    /** Dummy for a while... Does nothing. */
     @Test
     void contextLoads() {}
 }

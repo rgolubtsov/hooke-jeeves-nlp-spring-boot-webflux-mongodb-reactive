@@ -55,6 +55,15 @@ public class HookeJeevesController {
     private static final String EQUALS   = "=";
     private static final String NEW_LINE = System.lineSeparator();
 
+    /**
+     * The "/store-rosenbrock" PUT endpoint.
+     * Puts initial guess data to the database for their future retrieval.
+     *
+     * @param nvars    The number of variables.
+     * @param startpt0 The 1st starting point coordinate.
+     * @param startpt1 The 2nd starting point coordinate.
+     * @param rho      The rho value.
+     */
     @PutMapping(REST_STORE_ROSENBROCK)
     public void store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=TWO                ) final String nvars,
@@ -71,6 +80,17 @@ public class HookeJeevesController {
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
     }
 
+    /**
+     * The "/store-woods" PUT endpoint.
+     * Puts initial guess data to the database for their future retrieval.
+     *
+     * @param nvars    The number of variables.
+     * @param startpt0 The 1st starting point coordinate.
+     * @param startpt1 The 2nd starting point coordinate.
+     * @param startpt2 The 3rd starting point coordinate.
+     * @param startpt3 The 4th starting point coordinate.
+     * @param rho      The rho value.
+     */
     @PutMapping(REST_STORE_WOODS)
     public void store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=FOUR         ) final String nvars,
@@ -117,6 +137,14 @@ public class HookeJeevesController {
         HookeJeevesApplication.collection.insertOne(document);
     }
 
+    /**
+     * The "/solve" GET endpoint.
+     * Retrieves initial guess data form the database
+     * and calls the main optimization method against them.
+     * In short, solves the nonlinear optimization problem.
+     *
+     * @param fx The name of the user-supplied objective function f(x,n).
+     */
     @GetMapping(REST_SOLVE)
     public void solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
@@ -207,6 +235,14 @@ public class HookeJeevesController {
         }
     }
 
+    /**
+     * The "/solve" POST endpoint.
+     * Retrieves initial guess data form the database
+     * and calls the main optimization method against them.
+     * In short, solves the nonlinear optimization problem.
+     *
+     * @param fx The name of the user-supplied objective function f(x,n).
+     */
     @PostMapping(REST_SOLVE)
     public void solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx) {
