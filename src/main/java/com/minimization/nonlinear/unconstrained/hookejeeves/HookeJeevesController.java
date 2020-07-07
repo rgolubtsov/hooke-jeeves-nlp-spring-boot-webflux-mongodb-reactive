@@ -119,7 +119,7 @@ public class HookeJeevesController {
                          + STARTPT3 + EQUALS + startpt3 + NEW_LINE
                          + RHO      + EQUALS + rho);
 
-        if (nvars.compareTo(TWO) != 0) {
+        if (nvars.compareTo(FOUR) != 0) {
             is_request_malformed = true;
         }
 
