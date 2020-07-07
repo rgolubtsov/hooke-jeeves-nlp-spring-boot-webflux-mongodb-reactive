@@ -15,9 +15,9 @@ $ ./mvnw spring-boot:run
 ```
 
 ```
-$ curl -vXPUT http://localhost:8080/store-rosenbrock
+$ curl -vXPUT http://localhost:8080/store/rosenbrock
 ...
-$ curl -vXPUT http://localhost:8080/store-woods
+$ curl -vXPUT http://localhost:8080/store/woods
 ...
 $ curl -v http://localhost:8080/solve      # <== GET.  Defaults to ?fx=rosenbrock
 ...

@@ -26,9 +26,8 @@ import static com.mongodb.client.model.Filters.*;
 @RestController
 public class HookeJeevesController {
     // Helper constants.
-    private static final String REST_STORE_ROSENBROCK = "store-rosenbrock";
-    private static final String REST_STORE_WOODS      = "store-woods";
-    private static final String REST_SOLVE            = "solve";
+    private static final String REST_STORE = "store";
+    private static final String REST_SOLVE = "solve";
 
     private static final String NVARS    = "nvars";
     private static final String STARTPT0 = "startpt0";
@@ -52,11 +51,12 @@ public class HookeJeevesController {
     private static final String ROSENBROCK = "rosenbrock";
     private static final String WOODS      = "woods";
 
+    private static final String SLASH    = "/";
     private static final String EQUALS   = "=";
     private static final String NEW_LINE = System.lineSeparator();
 
     /**
-     * The "/store-rosenbrock" PUT endpoint.
+     * The "/store/rosenbrock" PUT endpoint.
      * Puts initial guess data to the database for their future retrieval.
      *
      * @param nvars    The number of variables.
@@ -64,7 +64,7 @@ public class HookeJeevesController {
      * @param startpt1 The 2nd starting point coordinate.
      * @param rho      The rho value.
      */
-    @PutMapping(REST_STORE_ROSENBROCK)
+    @PutMapping(REST_STORE + SLASH + ROSENBROCK)
     public void store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=TWO                ) final String nvars,
         @RequestParam(name=STARTPT0, defaultValue=MINUS_ONE_POINT_TWO) final String startpt0,
@@ -81,7 +81,7 @@ public class HookeJeevesController {
     }
 
     /**
-     * The "/store-woods" PUT endpoint.
+     * The "/store/woods" PUT endpoint.
      * Puts initial guess data to the database for their future retrieval.
      *
      * @param nvars    The number of variables.
@@ -91,7 +91,7 @@ public class HookeJeevesController {
      * @param startpt3 The 4th starting point coordinate.
      * @param rho      The rho value.
      */
-    @PutMapping(REST_STORE_WOODS)
+    @PutMapping(REST_STORE + SLASH + WOODS)
     public void store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=FOUR         ) final String nvars,
         @RequestParam(name=STARTPT0, defaultValue=MINUS_THREE  ) final String startpt0,
