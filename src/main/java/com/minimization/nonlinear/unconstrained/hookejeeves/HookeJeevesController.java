@@ -71,10 +71,20 @@ public class HookeJeevesController {
         @RequestParam(name=STARTPT1, defaultValue=ONE_POINT_ZERO     ) final String startpt1,
         @RequestParam(name=RHO,      defaultValue=RHO_BEGIN_STR      ) final String rho) {
 
+        boolean is_request_malformed = false;
+
         System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
                          + STARTPT0 + EQUALS + startpt0 + NEW_LINE
                          + STARTPT1 + EQUALS + startpt1 + NEW_LINE
                          + RHO      + EQUALS + rho);
+
+        if (nvars.compareTo(TWO) != 0) {
+            is_request_malformed = true;
+        }
+
+        if (is_request_malformed) {
+            System.out.println("HTTP 400 Bad Request");
+        }
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
@@ -100,12 +110,22 @@ public class HookeJeevesController {
         @RequestParam(name=STARTPT3, defaultValue=MINUS_ONE    ) final String startpt3,
         @RequestParam(name=RHO,      defaultValue=RHO_WOODS_STR) final String rho) {
 
+        boolean is_request_malformed = false;
+
         System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
                          + STARTPT0 + EQUALS + startpt0 + NEW_LINE
                          + STARTPT1 + EQUALS + startpt1 + NEW_LINE
                          + STARTPT2 + EQUALS + startpt2 + NEW_LINE
                          + STARTPT3 + EQUALS + startpt3 + NEW_LINE
                          + RHO      + EQUALS + rho);
+
+        if (nvars.compareTo(FOUR) != 0) {
+            is_request_malformed = true;
+        }
+
+        if (is_request_malformed) {
+            System.out.println("HTTP 400 Bad Request");
+        }
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, startpt2, startpt3, rho);
