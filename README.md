@@ -5,6 +5,8 @@
 
 ---
 
+**Build** and **run** the microservice:
+
 ```
 $ ./mvnw clean
 ...
@@ -14,11 +16,30 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
+**Store** (put) initial guess data in the database using default values:
+
+* For the **Rosenbrock** test problem: `nvars=2`, `startpt0=-1.2`, `startpt1=1.0`,                               `rho=0.5`.
+* For the **Woods**      test problem: `nvars=4`, `startpt0=-3`,   `startpt1=-1`,  `startpt2=-3`, `startpt3=-1`, `rho=0.6`.
+
 ```
 $ curl -vXPUT http://localhost:8080/store/rosenbrock
 ...
 $ curl -vXPUT http://localhost:8080/store/woods
 ...
+```
+
+or using explicit values:
+
+```
+$ curl -vXPUT 'http://localhost:8080/store/rosenbrock?nvars=2&startpt0=-0.1111&startpt1=0.2222&rho=0.5678'
+...
+$ curl -vXPUT 'http://localhost:8080/store/woods?nvars=4&startpt0=-4.4444&startpt1=-2.2222&startpt2=-4.4444&startpt3=-2.2222&rho=0.6789'
+...
+```
+
+**Solve** a nonlinear optimization problem using the algorithm of Hooke and Jeeves (against **Rosenbrock** or **Woods** test function):
+
+```
 $ curl -v http://localhost:8080/solve      # <== GET.  Defaults to ?fx=rosenbrock
 ...
 $ curl -v http://localhost:8080/solve?fx=rosenbrock
