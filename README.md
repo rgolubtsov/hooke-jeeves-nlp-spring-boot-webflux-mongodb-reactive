@@ -18,14 +18,14 @@ $ ./mvnw spring-boot:run
 
 **Store** (put) initial guess data in the database using default values:
 
-Request param | *Rosenbrock* test problem | *Woods* test problem
-------------- | ------------------------- | --------------------
-`nvars`       |  `2`                      |  `4`
-`startpt0`    | `-1.2`                    | `-3`
-`startpt1`    |  `1.0`                    | `-1`
-`startpt2`    | &ndash;                   | `-3`
-`startpt3`    | &ndash;                   | `-1`
-`rho`         |  `0.5`                    |  `0.6`
+HTTP request param | *Rosenbrock* test problem | *Woods* test problem
+------------------ | ------------------------- | --------------------
+`nvars`            |  `2`                      |  `4`
+`startpt0`         | `-1.2`                    | `-3`
+`startpt1`         |  `1.0`                    | `-1`
+`startpt2`         | &ndash;                   | `-3`
+`startpt3`         | &ndash;                   | `-1`
+`rho`              |  `0.5`                    |  `0.6`
 
 ```
 $ curl -vXPUT http://localhost:8080/store/rosenbrock
