@@ -12,6 +12,9 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,10 +65,13 @@ public class HookeJeevesController {
      * @param nvars    The number of variables.
      * @param startpt0 The 1st starting point coordinate.
      * @param startpt1 The 2nd starting point coordinate.
-     * @param rho      The rho value.
+     * @param rho      The <code>rho</code> value.
+     *
+     * @return The <code>ResponseEntity</code> object with a specific
+     *         HTTP status code provided.
      */
     @PutMapping(REST_STORE + SLASH + ROSENBROCK)
-    public void store_initial_guess_data(
+    public ResponseEntity store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=TWO                ) final String nvars,
         @RequestParam(name=STARTPT0, defaultValue=MINUS_ONE_POINT_TWO) final String startpt0,
         @RequestParam(name=STARTPT1, defaultValue=ONE_POINT_ZERO     ) final String startpt1,
@@ -83,11 +89,13 @@ public class HookeJeevesController {
         }
 
         if (is_request_malformed) {
-            System.out.println("HTTP 400 Bad Request");
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -99,10 +107,13 @@ public class HookeJeevesController {
      * @param startpt1 The 2nd starting point coordinate.
      * @param startpt2 The 3rd starting point coordinate.
      * @param startpt3 The 4th starting point coordinate.
-     * @param rho      The rho value.
+     * @param rho      The <code>rho</code> value.
+     *
+     * @return The <code>ResponseEntity</code> object with a specific
+     *         HTTP status code provided.
      */
     @PutMapping(REST_STORE + SLASH + WOODS)
-    public void store_initial_guess_data(
+    public ResponseEntity store_initial_guess_data(
         @RequestParam(name=NVARS,    defaultValue=FOUR         ) final String nvars,
         @RequestParam(name=STARTPT0, defaultValue=MINUS_THREE  ) final String startpt0,
         @RequestParam(name=STARTPT1, defaultValue=MINUS_ONE    ) final String startpt1,
@@ -124,11 +135,13 @@ public class HookeJeevesController {
         }
 
         if (is_request_malformed) {
-            System.out.println("HTTP 400 Bad Request");
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, startpt2, startpt3, rho);
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     // Helper method. Puts initial guess data to the database.
