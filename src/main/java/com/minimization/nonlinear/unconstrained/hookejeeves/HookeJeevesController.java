@@ -213,8 +213,14 @@ public class HookeJeevesController {
         }
 
                if (fx.compareTo(ROSENBROCK) == 0) {
-            // $ mongo
-            // > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
+            /*
+             * The following request command in the MongoDB shell
+             * is implemented below to retrieve the last document
+             * stored with the *nvars* param equals to 2.
+             *
+             * $ mongo
+             * > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
+             */
             document = (Document) HookeJeevesApplication.collection
                 .find(eq(NVARS, TWO))
                 .sort(new Document("_id", -1))
@@ -232,8 +238,14 @@ public class HookeJeevesController {
 
             objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
-            // $ mongo
-            // > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
+            /*
+             * The following request command in the MongoDB shell
+             * is implemented below to retrieve the last document
+             * stored with the *nvars* param equals to 4.
+             *
+             * $ mongo
+             * > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
+             */
             document = (Document) HookeJeevesApplication.collection
                 .find(eq(NVARS, FOUR))
                 .sort(new Document("_id", -1))
