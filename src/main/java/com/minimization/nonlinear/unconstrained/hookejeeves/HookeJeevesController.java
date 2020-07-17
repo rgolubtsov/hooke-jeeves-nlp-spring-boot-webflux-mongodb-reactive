@@ -177,9 +177,12 @@ public class HookeJeevesController {
      * In short, solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
+     *
+     * @return The <code>ResponseEntity</code> object with a specific
+     *         HTTP status code provided.
      */
     @GetMapping(REST_SOLVE)
-    public void solve_the_problem(
+    public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
                                                         final Object _) {
 
@@ -197,11 +200,27 @@ public class HookeJeevesController {
 
         Class objfun_cls;
 
+        boolean is_request_malformed = false;
+
         System.out.println(FX + EQUALS + fx);
 
+        if ((fx.compareTo(ROSENBROCK) != 0) && (fx.compareTo(WOODS) != 0)) {
+            is_request_malformed = true;
+        }
+
+        if (is_request_malformed) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
                if (fx.compareTo(ROSENBROCK) == 0) {
-            // $ mongo
-            // > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
+            /*
+             * The following request command in the MongoDB shell
+             * is implemented below to retrieve the last document
+             * stored with the *nvars* param equals to 2.
+             *
+             * $ mongo
+             * > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
+             */
             document = (Document) HookeJeevesApplication.collection
                 .find(eq(NVARS, TWO))
                 .sort(new Document("_id", -1))
@@ -219,8 +238,14 @@ public class HookeJeevesController {
 
             objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
-            // $ mongo
-            // > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
+            /*
+             * The following request command in the MongoDB shell
+             * is implemented below to retrieve the last document
+             * stored with the *nvars* param equals to 4.
+             *
+             * $ mongo
+             * > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
+             */
             document = (Document) HookeJeevesApplication.collection
                 .find(eq(NVARS, FOUR))
                 .sort(new Document("_id", -1))
@@ -266,6 +291,8 @@ public class HookeJeevesController {
         if (fx.compareTo(WOODS) == 0) {
             System.out.println("True answer: f(1, 1, 1, 1) = 0.");
         }
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -275,12 +302,15 @@ public class HookeJeevesController {
      * In short, solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
+     *
+     * @return The <code>ResponseEntity</code> object with a specific
+     *         HTTP status code provided.
      */
     @PostMapping(REST_SOLVE)
-    public void solve_the_problem(
+    public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx) {
 
-        solve_the_problem(fx, null);
+        return solve_the_problem(fx, null);
     }
 }
 
