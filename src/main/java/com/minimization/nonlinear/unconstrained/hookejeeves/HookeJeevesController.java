@@ -25,6 +25,11 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
 /** The controller class of the microservice. */
 @RestController
 public class HookeJeevesController {
@@ -54,9 +59,17 @@ public class HookeJeevesController {
     private static final String ROSENBROCK = "rosenbrock";
     private static final String WOODS      = "woods";
 
-    private static final String SLASH    = "/";
-    private static final String EQUALS   = "=";
+    private static final String SLASH    =  "/";
+    private static final String EQUALS   =  "=";
+    private static final String BRACES   = "{}";
+    private static final String SPACE    =  " ";
+    private static final String V_BAR    =  "|";
     private static final String NEW_LINE = System.lineSeparator();
+
+    /** The SLF4J logger. */
+    private static final Logger l = LoggerFactory.getLogger(
+        MethodHandles.lookup().lookupClass()
+    );
 
     /**
      * The "/store/rosenbrock" PUT endpoint.
@@ -79,10 +92,14 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
-        System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
-                         + STARTPT0 + EQUALS + startpt0 + NEW_LINE
-                         + STARTPT1 + EQUALS + startpt1 + NEW_LINE
-                         + RHO      + EQUALS + rho);
+        l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + RHO      + EQUALS + BRACES,
+                nvars,
+                startpt0,
+                startpt1,
+                rho);
 
         if (nvars.compareTo(TWO) != 0) {
             is_request_malformed = true;
@@ -123,12 +140,18 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
-        System.out.println(NVARS    + EQUALS + nvars    + NEW_LINE
-                         + STARTPT0 + EQUALS + startpt0 + NEW_LINE
-                         + STARTPT1 + EQUALS + startpt1 + NEW_LINE
-                         + STARTPT2 + EQUALS + startpt2 + NEW_LINE
-                         + STARTPT3 + EQUALS + startpt3 + NEW_LINE
-                         + RHO      + EQUALS + rho);
+        l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT2 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT3 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + RHO      + EQUALS + BRACES,
+                nvars,
+                startpt0,
+                startpt1,
+                startpt2,
+                startpt3,
+                rho);
 
         if (nvars.compareTo(FOUR) != 0) {
             is_request_malformed = true;
@@ -202,7 +225,7 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
-        System.out.println(FX + EQUALS + fx);
+        l.debug(FX + EQUALS + BRACES, fx);
 
         if ((fx.compareTo(ROSENBROCK) != 0) && (fx.compareTo(WOODS) != 0)) {
             is_request_malformed = true;
@@ -231,10 +254,14 @@ public class HookeJeevesController {
             startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
             rho        = new Double (document.getString(RHO     )).doubleValue();
 
-            System.out.println(NVARS    + EQUALS + nvars      + NEW_LINE
-                             + STARTPT0 + EQUALS + startpt[0] + NEW_LINE
-                             + STARTPT1 + EQUALS + startpt[1] + NEW_LINE
-                             + RHO      + EQUALS + rho);
+            l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO      + EQUALS + BRACES,
+                    nvars,
+                    startpt[0],
+                    startpt[1],
+                    rho);
 
             objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
@@ -258,12 +285,18 @@ public class HookeJeevesController {
             startpt[3] = new Double (document.getString(STARTPT3)).doubleValue();
             rho        = new Double (document.getString(RHO     )).doubleValue();
 
-            System.out.println(NVARS    + EQUALS + nvars      + NEW_LINE
-                             + STARTPT0 + EQUALS + startpt[0] + NEW_LINE
-                             + STARTPT1 + EQUALS + startpt[1] + NEW_LINE
-                             + STARTPT2 + EQUALS + startpt[2] + NEW_LINE
-                             + STARTPT3 + EQUALS + startpt[3] + NEW_LINE
-                             + RHO      + EQUALS + rho);
+            l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT2 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT3 + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO      + EQUALS + BRACES,
+                    nvars,
+                    startpt[0],
+                    startpt[1],
+                    startpt[2],
+                    startpt[3],
+                    rho);
 
             objfun_cls = Woods.class;
         } else {
