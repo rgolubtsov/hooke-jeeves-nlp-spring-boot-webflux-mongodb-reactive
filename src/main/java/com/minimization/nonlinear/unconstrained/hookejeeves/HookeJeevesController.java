@@ -12,6 +12,8 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
+import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHelper.*;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
@@ -59,12 +61,7 @@ public class HookeJeevesController {
     private static final String ROSENBROCK = "rosenbrock";
     private static final String WOODS      = "woods";
 
-    private static final String SLASH    =  "/";
-    private static final String EQUALS   =  "=";
-    private static final String BRACES   = "{}";
-    private static final String SPACE    =  " ";
-    private static final String V_BAR    =  "|";
-    private static final String NEW_LINE = System.lineSeparator();
+    private static final String SLASH = "/";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
