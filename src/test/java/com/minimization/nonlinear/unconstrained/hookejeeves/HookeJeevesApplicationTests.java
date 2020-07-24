@@ -12,6 +12,8 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
+import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHelper.*;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 
@@ -23,9 +25,6 @@ import java.lang.invoke.MethodHandles;
 /** The test class for the microservice. */
 @SpringBootTest
 class HookeJeevesApplicationTests {
-    // Helper constants.
-    private static final String BRACES = "{}";
-
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()

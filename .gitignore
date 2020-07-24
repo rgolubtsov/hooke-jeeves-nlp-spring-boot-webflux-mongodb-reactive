@@ -1,31 +1,18 @@
-HELP.md
+#
+# .gitignore
+# =============================================================================
+# The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
+# Microservice. Version 0.0.1
+# =============================================================================
+# This is the configuration of the project Git ignorables,
+# i.e. objects that should not be put into the repository.
+#
+
+# === JVM classes =============================================================
+*.class
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# === Log files ===============================================================
+log/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-
-### VS Code ###
-.vscode/
+# vim:set nu et ts=4 sw=4:
