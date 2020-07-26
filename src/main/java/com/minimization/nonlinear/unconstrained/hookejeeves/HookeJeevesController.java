@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.bson.Document;
 
@@ -87,12 +88,15 @@ public class HookeJeevesController {
         @RequestParam(name=STARTPT1, defaultValue=ONE_POINT_ZERO     ) final String startpt1,
         @RequestParam(name=RHO,      defaultValue=RHO_BEGIN_STR      ) final String rho) {
 
+        String req_method = RequestMethod.PUT.toString();
+
         boolean is_request_malformed = false;
 
-        l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + RHO      + EQUALS + BRACES,
+        l.debug(req_method + SPACE  + SPACE  + SPACE
+              + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + RHO        + EQUALS + BRACES,
                 nvars,
                 startpt0,
                 startpt1,
@@ -135,14 +139,17 @@ public class HookeJeevesController {
         @RequestParam(name=STARTPT3, defaultValue=MINUS_ONE    ) final String startpt3,
         @RequestParam(name=RHO,      defaultValue=RHO_WOODS_STR) final String rho) {
 
+        String req_method = RequestMethod.PUT.toString();
+
         boolean is_request_malformed = false;
 
-        l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT2 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT3 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + RHO      + EQUALS + BRACES,
+        l.debug(req_method + SPACE  + SPACE  + SPACE
+              + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + RHO        + EQUALS + BRACES,
                 nvars,
                 startpt0,
                 startpt1,
@@ -220,9 +227,18 @@ public class HookeJeevesController {
 
         Class objfun_cls;
 
+        String req_method = RequestMethod.GET + SPACE;
+
         boolean is_request_malformed = false;
 
-        l.debug(FX + EQUALS + BRACES, fx);
+        // When calling solve_the_problem()'s POST counterpart,
+        // changing the method name accordingly.
+        if (_ == null) {
+            req_method = RequestMethod.POST.toString();
+        }
+
+        l.debug(req_method  + SPACE + SPACE
+              + FX + EQUALS + BRACES, fx);
 
         if ((fx.compareTo(ROSENBROCK) != 0) && (fx.compareTo(WOODS) != 0)) {
             is_request_malformed = true;
@@ -251,10 +267,11 @@ public class HookeJeevesController {
             startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
             rho        = new Double (document.getString(RHO     )).doubleValue();
 
-            l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + RHO      + EQUALS + BRACES,
+            l.debug(req_method + SPACE  + SPACE
+                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO        + EQUALS + BRACES,
                     nvars,
                     startpt[0],
                     startpt[1],
@@ -282,12 +299,13 @@ public class HookeJeevesController {
             startpt[3] = new Double (document.getString(STARTPT3)).doubleValue();
             rho        = new Double (document.getString(RHO     )).doubleValue();
 
-            l.debug(NVARS    + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT0 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT1 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT2 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT3 + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + RHO      + EQUALS + BRACES,
+            l.debug(req_method + SPACE  + SPACE
+                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO        + EQUALS + BRACES,
                     nvars,
                     startpt[0],
                     startpt[1],
