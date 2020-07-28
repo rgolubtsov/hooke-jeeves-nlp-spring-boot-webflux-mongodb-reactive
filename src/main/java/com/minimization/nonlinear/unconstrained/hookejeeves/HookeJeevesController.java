@@ -24,6 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.*;
@@ -68,6 +71,62 @@ public class HookeJeevesController {
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()
     );
+
+    private class PutSubscriber<T> implements Subscriber<T> {
+        /**
+         * Invoked after calling <code>Publisher.subscribe(Subscriber)</code>.
+         * <br />
+         * <br />No data will start flowing
+         * until <code>Subscription.request(long)</code> is invoked.
+         *
+         * @param s <code>Subscription</code> that allows requesting data
+         *          via <code>Subscription.request(long)</code>.
+         */
+        @Override
+        public void onSubscribe(final Subscription s) {
+            s.request(1L); // <== Such a value is also valid
+                           //     to be effectively "hot".))
+//          s.request(Long.MAX_VALUE);
+        }
+
+        /**
+         * Data notification sent by the <code>Publisher</code>
+         * in response to requests to <code>Subscription.request(long)</code>.
+         *
+         * @param t The element signaled.
+         */
+        @Override
+        public void onNext(final T t)          { /* Dummy for a while... */ }
+
+        /**
+         * Successful terminal state.
+         * <br />
+         * <br />No further events will be sent
+         * even if <code>Subscription.request(long)</code> is invoked again.
+         */
+        @Override
+        public void onComplete()               { /* Dummy for a while... */ }
+
+        /**
+         * Failed terminal state.
+         * <br />
+         * <br />No further events will be sent
+         * even if <code>Subscription.request(long)</code> is invoked again.
+         *
+         * @param t The throwable signaled.
+         */
+        @Override
+        public void onError(final Throwable t) { /* Dummy for a while... */ }
+    }
+
+    private Document document;
+
+    private class GetSubscriber<Document> extends PutSubscriber<Document> {
+        @Override
+        public void onNext(final Document  document_) {
+            document = (org.bson.Document) document_;
+        }
+    }
 
     /**
      * The "/store/rosenbrock" PUT endpoint.
@@ -194,7 +253,9 @@ public class HookeJeevesController {
         document.append(RHO, rho);
 
         // Putting initial guess data to the database.
-        HookeJeevesApplication.collection.insertOne(document);
+        HookeJeevesApplication.collection
+                              .insertOne(document)
+                              .subscribe(new PutSubscriber());
     }
 
     /**
@@ -212,8 +273,6 @@ public class HookeJeevesController {
     public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
                                                         final Object _) {
-
-        Document document;
 
         int nvars=0;
         int itermax;
@@ -257,10 +316,10 @@ public class HookeJeevesController {
              * $ mongo
              * > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
              */
-            document = (Document) HookeJeevesApplication.collection
+            HookeJeevesApplication.collection
                 .find(eq(NVARS, TWO))
                 .sort(new Document("_id", -1))
-                .first();
+                .first().subscribe(new GetSubscriber());
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
             startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
@@ -287,10 +346,10 @@ public class HookeJeevesController {
              * $ mongo
              * > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
              */
-            document = (Document) HookeJeevesApplication.collection
+            HookeJeevesApplication.collection
                 .find(eq(NVARS, FOUR))
                 .sort(new Document("_id", -1))
-                .first();
+                .first().subscribe(new GetSubscriber());
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
             startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
