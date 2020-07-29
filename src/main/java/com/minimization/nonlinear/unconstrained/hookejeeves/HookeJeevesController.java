@@ -72,6 +72,10 @@ public class HookeJeevesController {
         MethodHandles.lookup().lookupClass()
     );
 
+    /**
+     * The <code>Subscriber</code> class, intended to be operational
+     * regarding <b>PUT</b> REST endpoints.
+     */
     private class PutSubscriber<T> implements Subscriber<T> {
         /**
          * Invoked after calling <code>Publisher.subscribe(Subscriber)</code>.
@@ -119,9 +123,21 @@ public class HookeJeevesController {
         public void onError(final Throwable t) { /* Dummy for a while... */ }
     }
 
+    /** The BSON document. */
     private Document document;
 
+    /**
+     * The <code>Subscriber</code> class, intended to be operational
+     * regarding <b>GET</b> and <b>POST</b> REST endpoints.
+     */
     private class GetSubscriber<Document> extends PutSubscriber<Document> {
+        /**
+         * Data notification sent by the <code>Publisher</code>
+         * in response to requests to <code>Subscription.request(long)</code>.
+         *
+         * @param document_ The element signaled (canonically).
+         *                  (Currently this is the BSON document instance.)
+         */
         @Override
         public void onNext(final Document  document_) {
             document = (org.bson.Document) document_;
@@ -129,7 +145,7 @@ public class HookeJeevesController {
     }
 
     /**
-     * The "/store/rosenbrock" PUT endpoint.
+     * The <code>/store/rosenbrock</code> PUT endpoint.
      * Puts initial guess data to the database for their future retrieval.
      *
      * @param nvars    The number of variables.
@@ -176,7 +192,7 @@ public class HookeJeevesController {
     }
 
     /**
-     * The "/store/woods" PUT endpoint.
+     * The <code>/store/woods</code> PUT endpoint.
      * Puts initial guess data to the database for their future retrieval.
      *
      * @param nvars    The number of variables.
@@ -259,7 +275,7 @@ public class HookeJeevesController {
     }
 
     /**
-     * The "/solve" GET endpoint.
+     * The <code>/solve</code> GET endpoint.
      * Retrieves initial guess data form the database
      * and calls the main optimization method against them.
      * In short, solves the nonlinear optimization problem.
@@ -403,7 +419,7 @@ public class HookeJeevesController {
     }
 
     /**
-     * The "/solve" POST endpoint.
+     * The <code>/solve</code> POST endpoint.
      * Retrieves initial guess data form the database
      * and calls the main optimization method against them.
      * In short, solves the nonlinear optimization problem.
