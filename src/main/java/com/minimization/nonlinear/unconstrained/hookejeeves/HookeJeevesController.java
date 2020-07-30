@@ -100,7 +100,7 @@ public class HookeJeevesController {
          * @param t The element signaled.
          */
         @Override
-        public void onNext(final T t)          { /* Dummy for a while... */ }
+        public void onNext(final T t) { /* Dummy for a while... */ }
 
         /**
          * Successful terminal state.
@@ -109,7 +109,9 @@ public class HookeJeevesController {
          * even if <code>Subscription.request(long)</code> is invoked again.
          */
         @Override
-        public void onComplete()               { /* Dummy for a while... */ }
+        public void onComplete() {
+            l.info(PUT_ON_COMPLETE);
+        }
 
         /**
          * Failed terminal state.
@@ -120,7 +122,9 @@ public class HookeJeevesController {
          * @param t The throwable signaled.
          */
         @Override
-        public void onError(final Throwable t) { /* Dummy for a while... */ }
+        public void onError(final Throwable t) {
+            l.error(PUT_ON_ERROR + SPACE + BRACES, t);
+        }
     }
 
     /** The BSON document. */
@@ -141,6 +145,30 @@ public class HookeJeevesController {
         @Override
         public void onNext(final Document  document_) {
             document = (org.bson.Document) document_;
+        }
+
+        /**
+         * Successful terminal state.
+         * <br />
+         * <br />No further events will be sent
+         * even if <code>Subscription.request(long)</code> is invoked again.
+         */
+        @Override
+        public void onComplete() {
+            l.info(GET_ON_COMPLETE);
+        }
+
+        /**
+         * Failed terminal state.
+         * <br />
+         * <br />No further events will be sent
+         * even if <code>Subscription.request(long)</code> is invoked again.
+         *
+         * @param t The throwable signaled.
+         */
+        @Override
+        public void onError(final Throwable t) {
+            l.error(GET_ON_ERROR + SPACE + BRACES, t);
         }
     }
 
