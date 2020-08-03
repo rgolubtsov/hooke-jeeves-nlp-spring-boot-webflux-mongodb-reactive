@@ -65,7 +65,8 @@ public class HookeJeevesController {
     private static final String ROSENBROCK = "rosenbrock";
     private static final String WOODS      = "woods";
 
-    private static final String SLASH = "/";
+    private static final String SLASH =   "/";
+    private static final String _ID   = "_id";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
@@ -76,7 +77,7 @@ public class HookeJeevesController {
      * The <code>Subscriber</code> class, intended to be operational
      * regarding <b>PUT</b> REST endpoints.
      */
-    private class PutSubscriber<T> implements Subscriber<T> {
+    private class PutSubscriber<Document> implements Subscriber<Document> {
         /**
          * Invoked after calling <code>Publisher.subscribe(Subscriber)</code>.
          * <br />
@@ -97,10 +98,12 @@ public class HookeJeevesController {
          * Data notification sent by the <code>Publisher</code>
          * in response to requests to <code>Subscription.request(long)</code>.
          *
-         * @param t The element signaled.
+         * @param document_ The element signaled.
          */
         @Override
-        public void onNext(final T t) { /* Dummy for a while... */ }
+        public void onNext(final Document document_) {
+            // Dummy for a while...
+        }
 
         /**
          * Successful terminal state.
@@ -362,7 +365,7 @@ public class HookeJeevesController {
              */
             HookeJeevesApplication.collection
                 .find(eq(NVARS, TWO))
-                .sort(new Document("_id", -1))
+                .sort(new Document(_ID, -1))
                 .first().subscribe(new GetSubscriber());
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
@@ -392,7 +395,7 @@ public class HookeJeevesController {
              */
             HookeJeevesApplication.collection
                 .find(eq(NVARS, FOUR))
-                .sort(new Document("_id", -1))
+                .sort(new Document(_ID, -1))
                 .first().subscribe(new GetSubscriber());
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
