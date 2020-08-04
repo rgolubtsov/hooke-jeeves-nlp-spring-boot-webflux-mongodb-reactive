@@ -46,8 +46,8 @@ public class ControllerHelper {
      * The <code>Subscriber</code> class, intended to be operational
      * regarding <b>PUT</b> REST endpoints.
      */
-    public static class PutSubscriber<Document>
-             implements    Subscriber<Document> {
+    public static class PutSubscriber<Document_>
+             implements    Subscriber<Document_> {
 
         /**
          * Invoked after calling <code>Publisher.subscribe(Subscriber)</code>.
@@ -72,7 +72,7 @@ public class ControllerHelper {
          * @param document_ The element signaled.
          */
         @Override
-        public void onNext(final Document document_) {
+        public void onNext(final Document_ document_) {
             // Dummy for a while...
         }
 
@@ -101,15 +101,15 @@ public class ControllerHelper {
         }
     }
 
-    /** The BSON document. */
-    public static Document document;
-
     /**
      * The <code>Subscriber</code> class, intended to be operational
      * regarding <b>GET</b> and <b>POST</b> REST endpoints.
      */
-    public static class GetSubscriber<Document>
-                extends PutSubscriber<Document> {
+    public static class GetSubscriber<Document_>
+                extends PutSubscriber<Document_> {
+
+        /** The BSON document. */
+        private Document document;
 
         /**
          * Data notification sent by the <code>Publisher</code>
@@ -119,7 +119,7 @@ public class ControllerHelper {
          *                  (Currently this is the BSON document instance.)
          */
         @Override
-        public void onNext(final Document  document_) {
+        public void onNext(final Document_ document_) {
             document = (org.bson.Document) document_;
         }
 
@@ -145,6 +145,15 @@ public class ControllerHelper {
         @Override
         public void onError(final Throwable t) {
             l.error(GET_ON_ERROR, t);
+        }
+
+        /**
+         * Getter for <code>document</code>.
+         *
+         * @return The BSON document.
+         */
+        public Document getDocument() {
+            return document;
         }
     }
 }
