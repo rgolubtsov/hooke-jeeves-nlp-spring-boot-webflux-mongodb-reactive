@@ -97,7 +97,7 @@ public class ControllerHelper {
          */
         @Override
         public void onError(final Throwable t) {
-            l.error(PUT_ON_ERROR + SPACE + BRACES, t);
+            l.error(PUT_ON_ERROR, t);
         }
     }
 
@@ -144,7 +144,7 @@ public class ControllerHelper {
          */
         @Override
         public void onError(final Throwable t) {
-            l.error(GET_ON_ERROR + SPACE + BRACES, t);
+            l.error(GET_ON_ERROR, t);
         }
     }
 }
