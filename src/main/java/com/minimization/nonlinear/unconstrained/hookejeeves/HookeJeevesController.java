@@ -70,6 +70,9 @@ public class HookeJeevesController {
         MethodHandles.lookup().lookupClass()
     );
 
+    /** The BSON document. */
+    private Document document;
+
     /**
      * The <code>/store/rosenbrock</code> PUT endpoint.
      * Puts initial guess data to the database for their future retrieval.
@@ -181,7 +184,7 @@ public class HookeJeevesController {
                             final String rho) {
 
         // Creating a new document containing initial guess data.
-        Document document = new Document();
+        document = new Document();
 
         document.append(NVARS,    nvars   )
                 .append(STARTPT0, startpt0)
@@ -197,7 +200,7 @@ public class HookeJeevesController {
         // Putting initial guess data to the database.
         HookeJeevesApplication.collection
                               .insertOne(document)
-                              .subscribe(new PutSubscriber());
+                              .subscribe(new PutSubscriber<Document>());
     }
 
     /**
@@ -249,6 +252,8 @@ public class HookeJeevesController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
+        GetSubscriber subscriber = new GetSubscriber<Document>();
+
                if (fx.compareTo(ROSENBROCK) == 0) {
             /*
              * The following request command in the MongoDB shell
@@ -261,7 +266,9 @@ public class HookeJeevesController {
             HookeJeevesApplication.collection
                 .find(eq(NVARS, TWO))
                 .sort(new Document(_ID, -1))
-                .first().subscribe(new GetSubscriber());
+                .first().subscribe(subscriber);
+
+            document = subscriber.getDocument();
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
             startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
@@ -291,7 +298,9 @@ public class HookeJeevesController {
             HookeJeevesApplication.collection
                 .find(eq(NVARS, FOUR))
                 .sort(new Document(_ID, -1))
-                .first().subscribe(new GetSubscriber());
+                .first().subscribe(subscriber);
+
+            document = subscriber.getDocument();
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
             startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
