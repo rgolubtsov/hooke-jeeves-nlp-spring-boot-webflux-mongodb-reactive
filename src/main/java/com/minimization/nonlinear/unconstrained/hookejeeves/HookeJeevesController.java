@@ -268,6 +268,8 @@ public class HookeJeevesController {
                 .sort(new Document(_ID, -1))
                 .first().subscribe(subscriber);
 
+            subscriber.await();
+
             document = subscriber.getDocument();
 
             nvars      = new Integer(document.getString(NVARS   )).intValue   ();
@@ -299,6 +301,8 @@ public class HookeJeevesController {
                 .find(eq(NVARS, FOUR))
                 .sort(new Document(_ID, -1))
                 .first().subscribe(subscriber);
+
+            subscriber.await();
 
             document = subscriber.getDocument();
 

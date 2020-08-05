@@ -20,22 +20,25 @@ import java.lang.invoke.MethodHandles;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.concurrent.CountDownLatch;
+
 import org.bson.Document;
 
 /** The helper for the controller class and related ones. */
 public class ControllerHelper {
     // Helper constants.
-    public static final String EQUALS   =  "=";
-    public static final String BRACES   = "{}";
-    public static final String SPACE    =  " ";
-    public static final String V_BAR    =  "|";
+    public static final String EQUALS   =    "=";
+    public static final String BRACES   =   "{}";
+    public static final String SPACE    =    " ";
+    public static final String V_BAR    =    "|";
+    public static final String DBG_PREF = "==> ";
     public static final String NEW_LINE = System.lineSeparator();
 
     // Logging messages used in Reactive Streams Subscriber classes.
-    public static final String PUT_ON_COMPLETE = "Data successfully sent.";
-    public static final String PUT_ON_ERROR    = "Error occurred in sending data:";
-    public static final String GET_ON_COMPLETE = "Data successfully received.";
-    public static final String GET_ON_ERROR    = "Error occurred in receiving data:";
+    private static final String PUT_ON_COMPLETE = "Data successfully sent.";
+    private static final String PUT_ON_ERROR    = "Error occurred in sending data:";
+    private static final String GET_ON_COMPLETE = "Data successfully received.";
+    private static final String GET_ON_ERROR    = "Error occurred in receiving data:";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
@@ -48,6 +51,9 @@ public class ControllerHelper {
      */
     public static class PutSubscriber<Document_>
              implements    Subscriber<Document_> {
+
+        private static final String PUT_SUBSCRIBER_S
+                                  = PutSubscriber.class.getSimpleName() + "'s";
 
         /**
          * Invoked after calling <code>Publisher.subscribe(Subscriber)</code>.
@@ -63,6 +69,10 @@ public class ControllerHelper {
             s.request(1L); // <== Such a value is also valid
                            //     to be effectively "hot".))
 //          s.request(Long.MAX_VALUE);
+
+            l.debug(DBG_PREF + PUT_SUBSCRIBER_S
+                  + SPACE    + "onSubscribe() called:"
+                  + SPACE    + BRACES, s);
         }
 
         /**
@@ -74,6 +84,10 @@ public class ControllerHelper {
         @Override
         public void onNext(final Document_ document_) {
             // Dummy for a while...
+
+            l.debug(DBG_PREF + PUT_SUBSCRIBER_S
+                  + SPACE    + "onNext() called:"
+                  + SPACE    + BRACES, document_);
         }
 
         /**
@@ -108,6 +122,12 @@ public class ControllerHelper {
     public static class GetSubscriber<Document_>
                 extends PutSubscriber<Document_> {
 
+        private static final String GET_SUBSCRIBER_S
+                                  = GetSubscriber.class.getSimpleName() + "'s";
+
+        /** The threads' countdown latch. */
+        private final CountDownLatch latch;
+
         /** The BSON document. */
         private Document document;
 
@@ -121,6 +141,10 @@ public class ControllerHelper {
         @Override
         public void onNext(final Document_ document_) {
             document = (org.bson.Document) document_;
+
+            l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                  + SPACE    + "onNext() called:"
+                  + SPACE    + BRACES, document);
         }
 
         /**
@@ -131,6 +155,8 @@ public class ControllerHelper {
          */
         @Override
         public void onComplete() {
+            latch.countDown();
+
             l.info(GET_ON_COMPLETE);
         }
 
@@ -144,7 +170,24 @@ public class ControllerHelper {
          */
         @Override
         public void onError(final Throwable t) {
+            onComplete();
+
             l.error(GET_ON_ERROR, t);
+        }
+
+        /**
+         * Causes the current thread to wait until the latch
+         * has counted down to zero, unless the thread is interrupted.
+         */
+        public void await() {
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                  + SPACE    + "await() called.");
         }
 
         /**
@@ -153,7 +196,16 @@ public class ControllerHelper {
          * @return The BSON document.
          */
         public Document getDocument() {
+            l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                  + SPACE    + "getDocument() called:"
+                  + SPACE    + BRACES, document);
+
             return document;
+        }
+
+        /** Constructor for the <code>GetSubscriber</code> class. */
+        public GetSubscriber() {
+            latch = new CountDownLatch(1);
         }
     }
 }
