@@ -20,6 +20,8 @@ import java.lang.invoke.MethodHandles;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.concurrent.CountDownLatch;
+
 import org.bson.Document;
 
 /** The helper for the controller class and related ones. */
@@ -85,7 +87,7 @@ public class ControllerHelper {
 
             l.debug(DBG_PREF + PUT_SUBSCRIBER_S
                   + SPACE    + "onNext() called:"
-                  + SPACE    + BRACES, document_.toString());
+                  + SPACE    + BRACES, document_);
         }
 
         /**
@@ -123,6 +125,9 @@ public class ControllerHelper {
         private static final String GET_SUBSCRIBER_S
                                   = GetSubscriber.class.getSimpleName() + "'s";
 
+        /** The threads' countdown latch. */
+        private final CountDownLatch latch;
+
         /** The BSON document. */
         private Document document;
 
@@ -150,6 +155,8 @@ public class ControllerHelper {
          */
         @Override
         public void onComplete() {
+            latch.countDown();
+
             l.info(GET_ON_COMPLETE);
         }
 
@@ -163,10 +170,22 @@ public class ControllerHelper {
          */
         @Override
         public void onError(final Throwable t) {
+            onComplete();
+
             l.error(GET_ON_ERROR, t);
         }
 
+        /**
+         * Causes the current thread to wait until the latch
+         * has counted down to zero, unless the thread is interrupted.
+         */
         public void await() {
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             l.debug(DBG_PREF + GET_SUBSCRIBER_S
                   + SPACE    + "await() called.");
         }
@@ -182,6 +201,11 @@ public class ControllerHelper {
                   + SPACE    + BRACES, document);
 
             return document;
+        }
+
+        /** Constructor for the <code>GetSubscriber</code> class. */
+        public GetSubscriber() {
+            latch = new CountDownLatch(1);
         }
     }
 }
