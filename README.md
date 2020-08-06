@@ -18,6 +18,15 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
+Generate API documentation:
+
+```
+$ javadoc com.minimization.nonlinear.unconstrained.hookejeeves \
+                                    -sourcepath src/main/java/ \
+                                    -d          docs/api
+...
+```
+
 **Store** (put) initial guess data in the database using default values:
 
 HTTP request param | *Rosenbrock* test problem | *Woods* test problem
