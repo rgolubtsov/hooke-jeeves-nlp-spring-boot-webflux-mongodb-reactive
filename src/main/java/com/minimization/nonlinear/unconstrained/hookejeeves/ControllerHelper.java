@@ -206,6 +206,10 @@ public class ControllerHelper {
         /** Constructor for the <code>GetSubscriber</code> class. */
         public GetSubscriber() {
             latch = new CountDownLatch(1);
+
+            l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                  + SPACE    + "constructor called:"
+                  + SPACE    + BRACES, latch.getCount());
         }
     }
 }
