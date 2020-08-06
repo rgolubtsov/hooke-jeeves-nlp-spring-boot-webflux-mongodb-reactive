@@ -35,6 +35,7 @@ import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHel
 
 /** The controller class of the microservice. */
 @RestController
+@SuppressWarnings("unchecked")
 public class HookeJeevesController {
     // Helper constants.
     private static final String REST_STORE = "store";
