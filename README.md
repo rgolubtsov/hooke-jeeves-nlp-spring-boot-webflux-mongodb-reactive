@@ -18,15 +18,6 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
-Generate API documentation:
-
-```
-$ javadoc com.minimization.nonlinear.unconstrained.hookejeeves \
-                                    -sourcepath src/main/java/ \
-                                    -d          docs/api
-...
-```
-
 **Store** (put) initial guess data in the database using default values:
 
 HTTP request param | *Rosenbrock* test problem | *Woods* test problem
@@ -68,5 +59,14 @@ $ curl -vd '' http://localhost:8080/solve  # <== POST. Defaults to ?fx=rosenbroc
 $ curl -vd '' http://localhost:8080/solve?fx=rosenbrock
 ...
 $ curl -vd '' http://localhost:8080/solve?fx=woods
+...
+```
+
+Generate API documentation:
+
+```
+$ javadoc com.minimization.nonlinear.unconstrained.hookejeeves \
+                                    -sourcepath src/main/java/ \
+                                    -d          docs/api
 ...
 ```
