@@ -61,3 +61,12 @@ $ curl -vd '' http://localhost:8080/solve?fx=rosenbrock
 $ curl -vd '' http://localhost:8080/solve?fx=woods
 ...
 ```
+
+Generate API documentation:
+
+```
+$ javadoc com.minimization.nonlinear.unconstrained.hookejeeves \
+                                    -sourcepath src/main/java/ \
+                                    -d          docs/api
+...
+```
