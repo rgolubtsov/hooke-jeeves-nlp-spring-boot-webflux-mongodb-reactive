@@ -44,7 +44,17 @@ public class HookeJeevesApplication {
 
         collection = database.getCollection(INITIAL_DATA_COLL);
 
+        // Starting up the app.
         SpringApplication.run(HookeJeevesApplication.class, args);
+
+        // Making final cleanups.
+        _cleanups_fixate(client);
+    }
+
+    // Helper method. Makes final buffer cleanups, releases resources, etc.
+    private static void _cleanups_fixate(final MongoClient client) {
+        // Closing the database client.
+//      client.close();
     }
 }
 
