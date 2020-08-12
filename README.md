@@ -65,12 +65,6 @@ $ curl -vd '' http://localhost:8080/solve?fx=woods
 **Generate** API documentation:
 
 ```
-$ javadoc com.minimization.nonlinear.unconstrained.hookejeeves                           \
-         -sourcepath   src/main/java/                                                    \
-         -d            docs/api                                                          \
-         -nodeprecated                                                                   \
-         -nohelp                                                                         \
-         -windowtitle  "The Hooke and Jeeves NLP algorithm. Microservice API"            \
-         -header       "<b>Hooke and Jeeves NLP alg.<br />Microservice API (v0.0.1)</b>"
+$ javadoc @Joxyfile
 ...
 ```
