@@ -15,6 +15,7 @@ com.minimization.nonlinear.unconstrained.hookejeeves
 # === Options =================================================================
 -sourcepath   src/main/java/
 -d            docs/api
+-private
 -nodeprecated
 -nohelp
 -windowtitle  "The Hooke and Jeeves NLP algorithm. Microservice API"
