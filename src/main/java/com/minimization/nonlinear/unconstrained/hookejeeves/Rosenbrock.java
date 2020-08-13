@@ -23,17 +23,17 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * @since   hooke-jeeves 0.0.1
  */
 public final class Rosenbrock {
-    /** Constant. The stepsize geometric shrink. */
+    /** The stepsize geometric shrink. */
     public static final double RHO_BEGIN = 0.5;
 
     /**
-     * The user-supplied objective function f(x,n).
+     * The user-supplied objective function <code>f(x,n)</code>.
      * <br />
-     * <br />Represents here the Rosenbrock's classic parabolic valley
+     * <br />Represents here the <b>Rosenbrock</b>'s classic parabolic valley
      * (&quot;banana&quot;) function.
      *
      * @param x The point at which f(x) should be evaluated.
-     * @param n The number of coordinates of <code>x</code>.
+     * @param n The number of coordinates of x.
      *
      * @return The objective function value.
      */

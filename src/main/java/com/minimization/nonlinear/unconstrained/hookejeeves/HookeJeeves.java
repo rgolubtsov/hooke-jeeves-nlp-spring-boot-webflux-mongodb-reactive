@@ -20,25 +20,23 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * @since   hooke-jeeves 0.0.1
  */
 public class HookeJeeves {
-    /** Constant. The maximum number of variables. */
+    /** The maximum number of variables. */
     public static final int VARS = 250;
 
-    /** Constant. The ending value of stepsize. */
+    /** The ending value of stepsize. */
     public static final double EPSMIN = 1E-6;
 
-    /** Constant. The maximum number of iterations. */
+    /** The maximum number of iterations. */
     public static final int IMAX = 5000;
 
     /** The number of function evaluations. */
     private int funevals = 0;
 
     /**
-     * Helper method.
-     * <br />
-     * <br />Given a point, look for a better one nearby, one coord at a time.
+     * Helper method: &quot;Given a point, look for a better one nearby,
+     *                one coord at a time.&quot;
      *
-     * @param delta      The delta between <code>prevbest</code>
-     *                   and <code>point</code>.
+     * @param delta      The delta between prevbest and point.
      * @param point      The coordinate from where to begin.
      * @param prevbest   The previous best-valued coordinate.
      * @param nvars      The number of variables.
@@ -106,8 +104,6 @@ public class HookeJeeves {
 
     /**
      * Main optimization method.
-     * <br />
-     * <br />The hooke subroutine itself.
      *
      * @param nvars      The number of variables.
      * @param startpt    The starting point coordinates.

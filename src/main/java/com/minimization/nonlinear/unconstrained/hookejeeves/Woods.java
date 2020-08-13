@@ -24,24 +24,25 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  */
 public final class Woods {
     /**
-     * Constant. The stepsize geometric shrink.
+     * The stepsize geometric shrink.
      * <br />
      * <br />The Hooke &amp; Jeeves algorithm works reasonably well
      * on Rosenbrock's function, but can fare worse on some standard
-     * test functions, depending on rho. Here is an example that works well
-     * when rho = 0.5, but fares poorly with rho = 0.6, and better again
-     * with rho = 0.8.
+     * test functions, depending on <code>rho</code>. Here is an example
+     * that works well when <code>rho = 0.5</code>, but fares poorly
+     * with <code>rho = 0.6</code>, and better again
+     * with <code>rho = 0.8</code>.
      */
     public static final double RHO_WOODS = 0.6;
 
     /**
-     * The user-supplied objective function f(x,n).
+     * The user-supplied objective function <code>f(x,n)</code>.
      * <br />
-     * <br />Woods &ndash; a la More, Garbow &amp; Hillstrom
+     * <br /><b>Woods</b> &mdash; a la More, Garbow &amp; Hillstrom
      * (TOMS algorithm 566).
      *
      * @param x The point at which f(x) should be evaluated.
-     * @param n The number of coordinates of <code>x</code>.
+     * @param n The number of coordinates of x.
      *
      * @return The objective function value.
      */
