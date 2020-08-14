@@ -24,7 +24,7 @@ import java.util.concurrent.CountDownLatch;
 
 import org.bson.Document;
 
-/** The helper for the controller class and related ones. */
+/** The helper class for the controller and the related ones. */
 public class ControllerHelper {
     // Helper constants.
     public static final String EQUALS   =    "=";
@@ -46,7 +46,7 @@ public class ControllerHelper {
     );
 
     /**
-     * The <code>Subscriber</code> class, intended to be operational
+     * The <code>Subscriber</code>-based class, intended to be operational
      * regarding <b>PUT</b> REST endpoints.
      */
     public static class PutSubscriber<Document_>
@@ -61,8 +61,8 @@ public class ControllerHelper {
          * <br />No data will start flowing
          * until <code>Subscription.request(long)</code> is invoked.
          *
-         * @param s <code>Subscription</code> that allows requesting data
-         *          via <code>Subscription.request(long)</code>.
+         * @param s Subscription that allows requesting data
+         *          via Subscription.request(long).
          */
         @Override
         public void onSubscribe(final Subscription s) {
@@ -116,7 +116,7 @@ public class ControllerHelper {
     }
 
     /**
-     * The <code>Subscriber</code> class, intended to be operational
+     * The <code>Subscriber</code>-based class, intended to be operational
      * regarding <b>GET</b> and <b>POST</b> REST endpoints.
      */
     public static class GetSubscriber<Document_>
@@ -191,7 +191,7 @@ public class ControllerHelper {
         }
 
         /**
-         * Getter for <code>document</code>.
+         * Accessor method for the <code>document</code>.
          *
          * @return The BSON document.
          */
