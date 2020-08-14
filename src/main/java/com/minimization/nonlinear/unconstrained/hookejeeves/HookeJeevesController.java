@@ -75,15 +75,17 @@ public class HookeJeevesController {
     private Document document;
 
     /**
-     * The <code>/store/rosenbrock</code> PUT endpoint.
-     * Puts initial guess data to the database for their future retrieval.
+     * The &quot;<code>/store/rosenbrock</code>&quot; <b>PUT</b> endpoint.
+     * <br />
+     * <br />Puts initial guess data to the database
+     * for their future retrieval.
      *
      * @param nvars    The number of variables.
      * @param startpt0 The 1st starting point coordinate.
      * @param startpt1 The 2nd starting point coordinate.
-     * @param rho      The <code>rho</code> value.
+     * @param rho      The rho value.
      *
-     * @return The <code>ResponseEntity</code> object with a specific
+     * @return The ResponseEntity object with a specific
      *         HTTP status code provided.
      */
     @PutMapping(REST_STORE + SLASH + ROSENBROCK)
@@ -122,17 +124,19 @@ public class HookeJeevesController {
     }
 
     /**
-     * The <code>/store/woods</code> PUT endpoint.
-     * Puts initial guess data to the database for their future retrieval.
+     * The &quot;<code>/store/woods</code>&quot; <b>PUT</b> endpoint.
+     * <br />
+     * <br />Puts initial guess data to the database
+     * for their future retrieval.
      *
      * @param nvars    The number of variables.
      * @param startpt0 The 1st starting point coordinate.
      * @param startpt1 The 2nd starting point coordinate.
      * @param startpt2 The 3rd starting point coordinate.
      * @param startpt3 The 4th starting point coordinate.
-     * @param rho      The <code>rho</code> value.
+     * @param rho      The rho value.
      *
-     * @return The <code>ResponseEntity</code> object with a specific
+     * @return The ResponseEntity object with a specific
      *         HTTP status code provided.
      */
     @PutMapping(REST_STORE + SLASH + WOODS)
@@ -176,7 +180,7 @@ public class HookeJeevesController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // Helper method. Puts initial guess data to the database.
+    // Helper method: Puts initial guess data to the database.
     private void _put_to_db(final String nvars,
                             final String startpt0,
                             final String startpt1,
@@ -205,14 +209,15 @@ public class HookeJeevesController {
     }
 
     /**
-     * The <code>/solve</code> GET endpoint.
-     * Retrieves initial guess data form the database
+     * The &quot;<code>/solve</code>&quot; <b>GET</b> endpoint.
+     * <br />
+     * <br />Retrieves initial guess data form the database
      * and calls the main optimization method against them.
-     * In short, solves the nonlinear optimization problem.
+     * <br />In short, it solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
      *
-     * @return The <code>ResponseEntity</code> object with a specific
+     * @return The ResponseEntity object with a specific
      *         HTTP status code provided.
      */
     @GetMapping(REST_SOLVE)
@@ -359,14 +364,15 @@ public class HookeJeevesController {
     }
 
     /**
-     * The <code>/solve</code> POST endpoint.
-     * Retrieves initial guess data form the database
+     * The &quot;<code>/solve</code>&quot; <b>POST</b> endpoint.
+     * <br />
+     * <br />Retrieves initial guess data form the database
      * and calls the main optimization method against them.
-     * In short, solves the nonlinear optimization problem.
+     * <br />In short, it solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
      *
-     * @return The <code>ResponseEntity</code> object with a specific
+     * @return The ResponseEntity object with a specific
      *         HTTP status code provided.
      */
     @PostMapping(REST_SOLVE)

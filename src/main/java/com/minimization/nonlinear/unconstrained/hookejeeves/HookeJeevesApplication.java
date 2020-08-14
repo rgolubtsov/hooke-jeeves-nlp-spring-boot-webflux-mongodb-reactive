@@ -23,10 +23,10 @@ import com.mongodb.reactivestreams.client.MongoCollection;
 /** The startup class of the microservice. */
 @SpringBootApplication
 public class HookeJeevesApplication {
-    /** Constant: The database name to connect to. */
+    /** The database name to connect to. */
     private static final String TEST_DATABASE = "test";
 
-    /** Constant: The collection name to get the collection. */
+    /** The collection name to get the collection. */
     private static final String INITIAL_DATA_COLL = "hooke_initial_guess_data";
 
     /** The collection object to store data to. */
@@ -51,7 +51,7 @@ public class HookeJeevesApplication {
         _cleanups_fixate(client);
     }
 
-    // Helper method. Makes final buffer cleanups, releases resources, etc.
+    // Helper method: Makes final buffer cleanups, releases resources, etc.
     private static void _cleanups_fixate(final MongoClient client) {
         // Closing the database client.
 //      client.close();
