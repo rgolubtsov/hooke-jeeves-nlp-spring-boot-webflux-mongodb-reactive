@@ -20,7 +20,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * valley function.
  *
  * @version 0.0.1
- * @since   hooke-jeeves 0.0.1
+ * @since   0.0.1
  */
 public final class Rosenbrock {
     /** The stepsize geometric shrink. */
