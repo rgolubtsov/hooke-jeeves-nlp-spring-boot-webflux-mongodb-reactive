@@ -20,7 +20,12 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import com.mongodb.reactivestreams.client.MongoCollection;
 
-/** The startup class of the microservice. */
+/**
+ * The startup class of the microservice.
+ *
+ * @version 0.0.1
+ * @since   0.0.1
+ */
 @SpringBootApplication
 public class HookeJeevesApplication {
     /** The database name to connect to. */

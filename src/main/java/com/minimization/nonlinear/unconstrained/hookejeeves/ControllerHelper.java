@@ -24,7 +24,12 @@ import java.util.concurrent.CountDownLatch;
 
 import org.bson.Document;
 
-/** The helper class for the controller and the related ones. */
+/**
+ * The helper class for the controller and the related ones.
+ *
+ * @version 0.0.1
+ * @since   0.0.1
+ */
 public class ControllerHelper {
     // Helper constants.
     public static final String EQUALS   =    "=";

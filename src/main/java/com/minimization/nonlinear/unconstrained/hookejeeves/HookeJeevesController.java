@@ -33,7 +33,12 @@ import static com.mongodb.client.model.Filters.*;
 
 import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHelper.*;
 
-/** The controller class of the microservice. */
+/**
+ * The controller class of the microservice.
+ *
+ * @version 0.0.1
+ * @since   0.0.1
+ */
 @RestController
 @SuppressWarnings("unchecked")
 public class HookeJeevesController {

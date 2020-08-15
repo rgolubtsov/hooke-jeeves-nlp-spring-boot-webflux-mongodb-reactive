@@ -22,7 +22,12 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-/** The test class for the microservice. */
+/**
+ * The test class for the microservice.
+ *
+ * @version 0.0.1
+ * @since   0.0.1
+ */
 @SpringBootTest
 class HookeJeevesApplicationTests {
     /** The SLF4J logger. */

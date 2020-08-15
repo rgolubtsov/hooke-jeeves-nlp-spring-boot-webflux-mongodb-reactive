@@ -17,7 +17,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * optimization problem using the algorithm of Hooke and Jeeves.
  *
  * @version 0.0.1
- * @since   hooke-jeeves 0.0.1
+ * @since   0.0.1
  */
 public class HookeJeeves {
     /** The maximum number of variables. */
