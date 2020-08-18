@@ -11,6 +11,8 @@
 
 # === Packages ================================================================
 com.minimization.nonlinear.unconstrained.hookejeeves
+com.minimization.nonlinear.unconstrained.hookejeeves.algorithm
+com.minimization.nonlinear.unconstrained.hookejeeves.controller
 
 # === Options =================================================================
 -sourcepath   src/main/java/

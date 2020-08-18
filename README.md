@@ -68,3 +68,10 @@ $ curl -vd '' http://localhost:8080/solve?fx=woods
 $ javadoc @Joxyfile
 ...
 ```
+
+or using **[Doxygen](http://doxygen.org "Doxygen")**:
+
+```
+$ doxygen
+...
+```
