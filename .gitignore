@@ -17,5 +17,6 @@ log/
 
 # === Generated docs ==========================================================
 api/
+doxygen/
 
 # vim:set nu et ts=4 sw=4:
