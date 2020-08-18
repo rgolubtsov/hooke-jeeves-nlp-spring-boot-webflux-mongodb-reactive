@@ -12,7 +12,7 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
-import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHelper.*;
+import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
