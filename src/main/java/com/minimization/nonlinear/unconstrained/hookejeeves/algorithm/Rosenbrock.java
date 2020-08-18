@@ -1,6 +1,6 @@
 /*
  * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * Rosenbrock.java
+ * algorithm/Rosenbrock.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.0.1
@@ -10,7 +10,7 @@
  * (See the LICENSE file at the top of the source tree.)
  */
 
-package com.minimization.nonlinear.unconstrained.hookejeeves;
+package com.minimization.nonlinear.unconstrained.hookejeeves.algorithm;
 
 /**
  * The <code>Rosenbrock</code> class is responsible for solving a nonlinear
