@@ -35,7 +35,7 @@ public class HookeJeevesApplication {
     private static final String INITIAL_DATA_COLL = "hooke_initial_guess_data";
 
     /** The collection object to store data to. */
-    static MongoCollection collection;
+    public static MongoCollection collection;
 
     /**
      * The microservice entry point.
