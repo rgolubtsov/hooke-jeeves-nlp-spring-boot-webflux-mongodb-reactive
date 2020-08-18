@@ -1,6 +1,6 @@
 /*
  * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * HookeJeevesController.java
+ * controller/HookeJeevesController.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.0.1
@@ -10,7 +10,7 @@
  * (See the LICENSE file at the top of the source tree.)
  */
 
-package com.minimization.nonlinear.unconstrained.hookejeeves;
+package com.minimization.nonlinear.unconstrained.hookejeeves.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,11 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.*;
 
-import static com.minimization.nonlinear.unconstrained.hookejeeves.ControllerHelper.*;
+import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
+import        com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesApplication;
+import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.HookeJeeves;
+import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Rosenbrock;
+import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woods;
 
 /**
  * The controller class of the microservice.
