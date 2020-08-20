@@ -1,0 +1,32 @@
+/*
+ * static/css/doxygen/html-extra-stylesheet.css
+ * ============================================================================
+ * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
+ * Microservice. Version 0.0.1
+ * ============================================================================
+ * A Spring Boot-based application, designed and intended to run
+ * as a microservice, implementing the nonlinear unconstrained
+ * minimization algorithm of Hooke and Jeeves.
+ * ============================================================================
+ * Copyright (C) 2020 Radislav (Radicchio) Golubtsov
+ *
+ * (See the LICENSE file at the top of the source tree.)
+ */
+
+#titlearea {
+    background-color: #6ec63b;
+}
+
+#projectname {
+    color:            #7aef17;
+    font-size:        1.6em;
+    font-weight:      bold;
+}
+
+#projectbrief {
+    color:            #69df06;
+    font-size:        1em;
+    font-weight:      bold;
+}
+
+/* vim:set nu et ts=4 sw=4: */
