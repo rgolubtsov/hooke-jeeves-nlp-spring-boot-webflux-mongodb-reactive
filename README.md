@@ -1,4 +1,6 @@
-# ![Hooke and Jeeves NLP](static/img/doxygen/hookejeeves-doxygen-logo-260x50.png) The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice
+# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice
+
+![Hooke and Jeeves NLP](static/img/doxygen/hookejeeves-doxygen-logo-260x50.png)
 
 **A Spring Boot-based application, designed and intended to run as a microservice,
 <br />implementing the nonlinear unconstrained minimization algorithm of Hooke and Jeeves**
