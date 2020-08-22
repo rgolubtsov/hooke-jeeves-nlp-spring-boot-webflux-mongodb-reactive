@@ -5,6 +5,10 @@
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.0.1
  * ============================================================================
+ * A Spring Boot-based application, designed and intended to run
+ * as a microservice, implementing the nonlinear unconstrained
+ * minimization algorithm of Hooke and Jeeves.
+ * ============================================================================
  * Written by Radislav (Radicchio) Golubtsov, 2020
  *
  * (See the LICENSE file at the top of the source tree.)

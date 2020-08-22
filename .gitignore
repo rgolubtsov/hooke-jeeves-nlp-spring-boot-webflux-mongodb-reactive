@@ -4,6 +4,10 @@
 # The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
 # Microservice. Version 0.0.1
 # =============================================================================
+# A Spring Boot-based application, designed and intended to run
+# as a microservice, implementing the nonlinear unconstrained
+# minimization algorithm of Hooke and Jeeves.
+#
 # This is the configuration of the project Git ignorables,
 # i.e. objects that should not be put into the repository.
 #
