@@ -13,10 +13,11 @@
 # (See the LICENSE file at the top of the source tree.)
 #
 
-MSVC = target
+SERV = target
 TEST = test
-DOCS = docs/api     \
-       docs/doxygen
+DOCS = docs
+API  = $(DOCS)/api
+DOX  = $(DOCS)/doxygen
 
 # Specify flags and other vars here.
 MAVEN_W = ./mvnw
@@ -26,7 +27,7 @@ DOXYGEN = doxygen
 RMFLAGS = -vR
 
 # Making the first target (the microservice itself).
-$(MSVC):
+$(SERV):
 	$(MAVEN_W) compile
 
 # Making the second target (tests).
@@ -34,16 +35,18 @@ $(TEST):
 	$(MAVEN_W) $(TEST)
 
 # Making the third target (API docs).
-$(DOCS):
+$(API):
 	$(JAVADOC) $(JDFLAGS)
+$(DOX):
 	$(DOXYGEN)
+$(DOCS): $(API) $(DOX)
 
 .PHONY: all clean
 
-all: $(MSVC) $(TEST) $(DOCS)
+all: $(SERV) $(TEST) $(DOCS)
 
 clean:
 	$(MAVEN_W) clean
-	$(RM) $(RMFLAGS) $(DOCS)
+	$(RM) $(RMFLAGS) $(API) $(DOX)
 
 # vim:set nu ts=4 sw=4:
