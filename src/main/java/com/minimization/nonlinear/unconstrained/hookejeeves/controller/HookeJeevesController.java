@@ -229,6 +229,8 @@ public class HookeJeevesController {
      * <br />In short, it solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
+     * @param _  The flag, indicating whether the POST request method is used.
+     *           (For that to be effective, this flag should be null.)
      *
      * @return The ResponseEntity object with a specific
      *         HTTP status code provided.
