@@ -20,6 +20,21 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
+**Build** the microservice using **GNU Make**:
+
+```
+$ make clean
+...
+$ make       # <== Compilation phase.
+...
+$ make test
+...
+$ make docs
+...
+$ make all   # <== Or make all the targets at one pass: compile, test, docs.
+...
+```
+
 **Store** (put) initial guess data in the database using default values:
 
 HTTP request param | *Rosenbrock* test problem | *Woods* test problem
