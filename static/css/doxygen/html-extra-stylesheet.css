@@ -13,6 +13,19 @@
  * (See the LICENSE file at the top of the source tree.)
  */
 
+body,
+#titlearea,
+#MSearchBox .left,
+#MSearchField,
+#MSearchBox .right,
+#nav-tree,
+.ui-resizable-e,
+.headertitle,
+.navpath ul {
+    background-image:  url("hookejeeves-doxygen-background-795x195.png");
+    background-repeat: repeat;
+}
+
 #titlearea {
     background-color: #6ec63b;
 }

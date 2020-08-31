@@ -18,12 +18,18 @@ TEST = test
 DOCS = docs
 API  = $(DOCS)/api
 DOX  = $(DOCS)/doxygen
+HTML = $(DOX)/html
+
+DOXYGEN_BACKGROUND_IMG = \
+static/img/doxygen/hookejeeves-doxygen-background-795x195.png
 
 # Specify flags and other vars here.
 MAVEN_W = ./mvnw
 JAVADOC = javadoc
 JDFLAGS = @Joxyfile
 DOXYGEN = doxygen
+CP      = cp
+CPFLAGS = -vf
 RMFLAGS = -vR
 
 # Making the first target (the microservice itself).
@@ -39,6 +45,7 @@ $(API):
 	$(JAVADOC) $(JDFLAGS)
 $(DOX):
 	$(DOXYGEN)
+	$(CP) $(CPFLAGS) $(DOXYGEN_BACKGROUND_IMG) $(HTML)/
 $(DOCS): $(API) $(DOX)
 
 .PHONY: all clean
