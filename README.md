@@ -7,16 +7,22 @@
 
 ---
 
-**Build** and **run** the microservice:
+## Table of Contents
+
+* **[Building](#building)**
+* **[Running](#running)**
+* **[Operating](#operating)**
+
+## Building
+
+**Build** the microservice using **Maven Wrapper**:
 
 ```
 $ ./mvnw clean
 ...
 $ ./mvnw compile
 ...
-$ ./mvnw test  # <== Optionally: This currently does nothing except emitting a huge (most likely useless) log output.
-...
-$ ./mvnw spring-boot:run
+$ ./mvnw test  # <== Optional. This currently does nothing except emitting a huge (most likely useless) log output.
 ...
 ```
 
@@ -25,15 +31,28 @@ $ ./mvnw spring-boot:run
 ```
 $ make clean
 ...
-$ make       # <== Compilation phase.
+$ make      # <== Compilation phase.
 ...
 $ make test
 ...
 $ make docs
 ...
-$ make all   # <== Or make all the targets at one pass: compile, test, docs.
+$ make all  # <== Or make all the targets at one pass: compile, test, docs.
 ...
 ```
+
+**Generate** API documentation: `$ javadoc @Joxyfile`, or using **[Doxygen](http://doxygen.org "Doxygen")**: `$ doxygen`. (Note: the `docs` target above covers both variants.)
+
+## Running
+
+**Run** the microservice using **Maven Wrapper** (generally for development and debugging purposes):
+
+```
+$ ./mvnw spring-boot:run
+...
+```
+
+## Operating
 
 **Store** (put) initial guess data in the database using default values:
 
@@ -76,19 +95,5 @@ $ curl -vd '' http://localhost:8080/solve  # <== POST. Defaults to ?fx=rosenbroc
 $ curl -vd '' http://localhost:8080/solve?fx=rosenbrock
 ...
 $ curl -vd '' http://localhost:8080/solve?fx=woods
-...
-```
-
-**Generate** API documentation:
-
-```
-$ javadoc @Joxyfile
-...
-```
-
-or using **[Doxygen](http://doxygen.org "Doxygen")**:
-
-```
-$ doxygen
 ...
 ```
