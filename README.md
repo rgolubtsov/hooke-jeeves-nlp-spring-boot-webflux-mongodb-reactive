@@ -24,7 +24,11 @@ $ ./mvnw compile
 ...
 $ ./mvnw test  # <== Optional. This currently does nothing except emitting a huge (most likely useless) log output.
 ...
+$ ./mvnw package
+...
 ```
+
+(Note: the `package` target above includes `test`.)
 
 **Build** the microservice using **GNU Make**:
 
@@ -35,11 +39,15 @@ $ make      # <== Compilation phase.
 ...
 $ make test
 ...
+$ make jar
+...
 $ make docs
 ...
-$ make all  # <== Or make all the targets at one pass: compile, test, docs.
+$ make all  # <== Or make all the targets at one pass: compile, jar, docs.
 ...
 ```
+
+(Note: the `jar` target above includes `test`.)
 
 **Generate** API documentation: `$ javadoc @Joxyfile`, or using **[Doxygen](http://doxygen.org "Doxygen")**: `$ doxygen`. (Note: the `docs` target above covers both variants.)
 
@@ -54,7 +62,7 @@ $ ./mvnw spring-boot:run
 
 ## Operating
 
-**Store** (put) initial guess data in the database using default values:
+**Store** (put) initial guess data to the database using default values:
 
 HTTP request param | *Rosenbrock* test problem | *Woods* test problem
 ------------------ | ------------------------- | --------------------
