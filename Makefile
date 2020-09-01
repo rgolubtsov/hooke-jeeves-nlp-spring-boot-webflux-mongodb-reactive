@@ -15,6 +15,7 @@
 
 SERV = target
 TEST = test
+JAR  = jar
 DOCS = docs
 API  = $(DOCS)/api
 DOX  = $(DOCS)/doxygen
@@ -40,7 +41,11 @@ $(SERV):
 $(TEST):
 	$(MAVEN_W) $(TEST)
 
-# Making the third target (API docs).
+# Making the third target (runnable JAR file).
+$(JAR):
+	$(MAVEN_W) package
+
+# Making the fourth target (API docs).
 $(API):
 	$(JAVADOC) $(JDFLAGS)
 $(DOX):
@@ -50,7 +55,7 @@ $(DOCS): $(API) $(DOX)
 
 .PHONY: all clean
 
-all: $(SERV) $(TEST) $(DOCS)
+all: $(SERV) $(JAR) $(DOCS)
 
 clean:
 	$(MAVEN_W) clean
