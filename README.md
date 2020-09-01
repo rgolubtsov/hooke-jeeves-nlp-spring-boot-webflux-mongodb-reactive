@@ -60,6 +60,13 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
+**Run** the microservice using its JAR file, built previously by the `package` or `jar` targets:
+
+```
+$ java -jar target/hooke-jeeves-0.0.1-SNAPSHOT.jar
+...
+```
+
 ## Operating
 
 **Store** (put) initial guess data to the database using default values:
