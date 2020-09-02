@@ -1,4 +1,4 @@
-# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice
+# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice [![Build Status](https://travis-ci.org/rgolubtsov/hooke-jeeves-nlp-spring-boot-webflux-mongodb-reactive.svg?branch=master)](https://travis-ci.org/rgolubtsov/hooke-jeeves-nlp-spring-boot-webflux-mongodb-reactive)
 
 ![Hooke and Jeeves NLP](static/img/doxygen/hookejeeves-doxygen-logo-260x50.png)
 
