@@ -60,7 +60,7 @@ $ ./mvnw spring-boot:run
 ...
 ```
 
-**Run** the microservice using its JAR file, built previously by the `package` or `jar` targets:
+**Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
 $ java -jar target/hooke-jeeves-0.0.1-SNAPSHOT.jar
