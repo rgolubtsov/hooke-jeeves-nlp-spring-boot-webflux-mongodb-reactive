@@ -22,7 +22,7 @@ os:       linux
 
 dist:     xenial
 
-#before_install:
+before_install:
     - apt-get update
 
     ## Installing Doxygen to generate API docs for the microservice.
