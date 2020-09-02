@@ -30,7 +30,8 @@ script:
     - pwd && ls -al . docs/ target/
           && make clean
           && ls -al
-          && make all
+          && make jar
+          && doxygen
           && ls -al . docs/ target/
           && echo
 
