@@ -18,15 +18,21 @@
 
 language: java
 
-sudo: required
+os:       linux
 
-dist: xenial
+dist:     xenial
 
-before_install:
-    - sudo apt-get update
+#before_install:
+#    - sudo apt-get update
 
 script:
-    - ls -al
+    ## Building the microservice using GNU Make.
+    - pwd && ls -al . docs/ target/
+          && make clean
+          && ls -al
+          && make all
+          && ls -al . docs/ target/
+          && echo
 
 ...
 
