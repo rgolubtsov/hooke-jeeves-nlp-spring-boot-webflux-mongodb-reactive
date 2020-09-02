@@ -229,7 +229,7 @@ public class HookeJeevesController {
      * <br />In short, it solves the nonlinear optimization problem.
      *
      * @param fx The name of the user-supplied objective function f(x,n).
-     * @param _  The flag, indicating whether the POST request method is used.
+     * @param __ The flag, indicating whether the POST request method is used.
      *           (For that to be effective, this flag should be null.)
      *
      * @return The ResponseEntity object with a specific
@@ -238,7 +238,7 @@ public class HookeJeevesController {
     @GetMapping(REST_SOLVE)
     public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK)       String fx,
-                                                        final Object _) {
+                                                        final Object __) {
 
         int nvars=0;
         int itermax;
@@ -258,7 +258,7 @@ public class HookeJeevesController {
 
         // When calling solve_the_problem()'s POST counterpart,
         // changing the method name accordingly.
-        if (_ == null) {
+        if (__ == null) {
             req_method = RequestMethod.POST.toString();
         }
 
