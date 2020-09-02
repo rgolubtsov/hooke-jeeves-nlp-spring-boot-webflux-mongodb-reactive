@@ -23,10 +23,10 @@ os:       linux
 dist:     xenial
 
 before_install:
-    - apt-get update
+    - sudo apt-get update
 
     ## Installing Doxygen to generate API docs for the microservice.
-    - apt-get install doxygen
+    - sudo apt-get install doxygen
 
 script:
     ## Building the microservice using GNU Make.
