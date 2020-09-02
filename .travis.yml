@@ -16,7 +16,7 @@
 %YAML 1.1
 ---
 
-language: java
+language: generic
 
 os:       linux
 
@@ -30,7 +30,7 @@ before_install:
 
 script:
     ## Building the microservice using GNU Make.
-    - pwd && ls -al . docs/ target/
+    - pwd && ls -al . docs/
           && make clean
           && ls -al
           && make jar
