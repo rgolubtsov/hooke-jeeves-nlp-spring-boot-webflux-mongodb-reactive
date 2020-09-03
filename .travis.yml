@@ -22,6 +22,8 @@ os:       linux
 
 dist:     xenial
 
+services: mongodb
+
 before_install:
     - sudo apt-get update
 
@@ -29,13 +31,25 @@ before_install:
     - sudo apt-get install doxygen
 
 script:
+    ## Querying the system for characteristics and available resources.
+    - cat /proc/cpuinfo | grep name && echo
+                                    && uname -a
+                                    && echo
+                                    && df -h
+                                    && echo
+                                    && free
+
     ## Building the microservice using GNU Make.
     - pwd && ls -al . docs/
+          && echo
           && make clean
+          && echo
           && ls -al
+          && echo
           && make jar
           && doxygen
-          && ls -al . docs/ target/
+          && echo
+          && ls -al . docs/ log/ target/
           && echo
 
 ...
