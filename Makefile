@@ -29,6 +29,7 @@ MAVEN_W = ./mvnw
 JAVADOC = javadoc
 JDFLAGS = @Joxyfile
 DOXYGEN = doxygen
+ECHO    = @echo
 CP      = cp
 CPFLAGS = -vf
 RMFLAGS = -vR
@@ -36,6 +37,7 @@ RMFLAGS = -vR
 # Making the first target (the microservice itself).
 $(SERV):
 	$(MAVEN_W) compile
+	$(ECHO)
 
 # Making the second target (tests).
 $(TEST):
@@ -44,12 +46,15 @@ $(TEST):
 # Making the third target (runnable JAR file).
 $(JAR):
 	$(MAVEN_W) package
+	$(ECHO)
 
 # Making the fourth target (API docs).
 $(API):
 	$(JAVADOC) $(JDFLAGS)
+	$(ECHO)
 $(DOX):
 	$(DOXYGEN)
+	$(ECHO)
 	$(CP) $(CPFLAGS) $(DOXYGEN_BACKGROUND_IMG) $(HTML)/
 $(DOCS): $(API) $(DOX)
 
