@@ -31,11 +31,16 @@ before_install:
 script:
     ## Building the microservice using GNU Make.
     - pwd && ls -al . docs/
+          && echo
           && make clean
+          && echo
           && ls -al
+          && echo
           && make jar
+          && echo
           && doxygen
-          && ls -al . docs/ target/
+          && echo
+          && ls -al . docs/ log/ target/
           && echo
 
 ...
