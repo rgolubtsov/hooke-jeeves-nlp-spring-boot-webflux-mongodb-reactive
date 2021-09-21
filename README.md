@@ -2,7 +2,7 @@
 
 ![Hooke and Jeeves NLP](static/img/doxygen/hookejeeves-doxygen-logo-260x50.png)
 
-**A Spring Boot-based application, designed and intended to run as a microservice,
+**A Spring Boot-based application, designed and intended to be run as a microservice,
 <br />implementing the nonlinear unconstrained minimization algorithm of Hooke and Jeeves**
 
 ---
