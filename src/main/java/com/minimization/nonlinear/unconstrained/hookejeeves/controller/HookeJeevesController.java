@@ -61,6 +61,7 @@ public class HookeJeevesController {
     private static final String STARTPT3 = "startpt3";
     private static final String RHO      = "rho";
 
+    // Extra helper constants.
     private static final String TWO                 =  "2";
     private static final String MINUS_ONE_POINT_TWO = "-1.2";
     private static final String ONE_POINT_ZERO      =  "1.0";
