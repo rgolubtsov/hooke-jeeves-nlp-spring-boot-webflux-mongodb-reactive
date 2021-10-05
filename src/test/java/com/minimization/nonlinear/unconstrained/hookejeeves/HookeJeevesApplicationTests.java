@@ -16,15 +16,15 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
-import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
-
-import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+
+import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
+
+import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
 
 /**
  * The test class for the microservice.
