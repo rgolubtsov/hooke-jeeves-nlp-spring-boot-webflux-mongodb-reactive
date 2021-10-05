@@ -15,6 +15,13 @@
 
 ## Building
 
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `maven`, `make`, `mongodb`):
+
+```
+$ sudo apt-get update && \
+  sudo apt-get install openjdk-11-jdk-headless maven make mongodb -y
+```
+
 **Build** the microservice using **Maven Wrapper**:
 
 ```
@@ -56,14 +63,22 @@ $ make all  # <== Or make all the targets at one pass: compile, jar, docs.
 **Run** the microservice using **Maven Wrapper** (generally for development and debugging purposes):
 
 ```
-$ ./mvnw spring-boot:run
+$ ./mvnw spring-boot:run; echo $?
+$ #                     ^   ^   ^
+$ #                     |   |   |
+$ # --------------------+---+---+
+$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/hooke-jeeves-0.0.1-SNAPSHOT.jar
+$ java -jar target/hooke-jeeves-0.0.1-SNAPSHOT.jar; echo $?
+$ #                                               ^   ^   ^
+$ #                                               |   |   |
+$ # ----------------------------------------------+---+---+
+$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
@@ -76,8 +91,8 @@ HTTP request param | *Rosenbrock* test problem | *Woods* test problem
 `nvars`            |  `2`                      |  `4`
 `startpt0`         | `-1.2`                    | `-3`
 `startpt1`         |  `1.0`                    | `-1`
-`startpt2`         | &ndash;                   | `-3`
-`startpt3`         | &ndash;                   | `-1`
+`startpt2`         | &mdash;                   | `-3`
+`startpt3`         | &mdash;                   | `-1`
 `rho`              |  `0.5`                    |  `0.6`
 
 ```
