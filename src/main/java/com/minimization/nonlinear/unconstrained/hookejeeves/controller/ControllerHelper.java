@@ -3,7 +3,7 @@
  * controller/ControllerHelper.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.0.1
+ * Microservice. Version 0.5.9
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -31,7 +31,7 @@ import org.bson.Document;
 /**
  * The helper class for the controller and the related ones.
  *
- * @version 0.0.1
+ * @version 0.5.9
  * @since   0.0.1
  */
 public class ControllerHelper {
