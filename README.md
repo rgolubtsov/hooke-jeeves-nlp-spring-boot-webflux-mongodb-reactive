@@ -15,11 +15,11 @@
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `maven`, `make`, `mongodb`):
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `maven`, `make`, `mongodb`, `doxygen`):
 
 ```
 $ sudo apt-get update && \
-  sudo apt-get install openjdk-11-jdk-headless maven make mongodb -y
+  sudo apt-get install openjdk-11-jdk-headless maven make mongodb doxygen -y
 ```
 
 **Build** the microservice using **Maven Wrapper**:
@@ -91,8 +91,8 @@ HTTP request param | *Rosenbrock* test problem | *Woods* test problem
 `nvars`            |  `2`                      |  `4`
 `startpt0`         | `-1.2`                    | `-3`
 `startpt1`         |  `1.0`                    | `-1`
-`startpt2`         | &mdash;                   | `-3`
-`startpt3`         | &mdash;                   | `-1`
+`startpt2`         | &ndash;                   | `-3`
+`startpt3`         | &ndash;                   | `-1`
 `rho`              |  `0.5`                    |  `0.6`
 
 ```
