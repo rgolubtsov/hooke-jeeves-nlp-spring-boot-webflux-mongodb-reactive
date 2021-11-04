@@ -50,7 +50,7 @@ public final class Woods {
      *
      * @return The objective function value.
      */
-    public static double f(final double[] x, final int n) {
+    public static final double f(final double[] x, final int n) {
         double s1;
         double s2;
         double s3;

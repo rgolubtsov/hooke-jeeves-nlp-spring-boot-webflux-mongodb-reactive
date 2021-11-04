@@ -1,6 +1,6 @@
 /*
  * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * controller/ControllerHelper.java
+ * HookeJeevesControllerHelper.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.5.9
@@ -14,7 +14,7 @@
  * (See the LICENSE file at the top of the source tree.)
  */
 
-package com.minimization.nonlinear.unconstrained.hookejeeves.controller;
+package com.minimization.nonlinear.unconstrained.hookejeeves;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ import org.bson.Document;
  * @version 0.5.9
  * @since   0.0.1
  */
-public class ControllerHelper {
+public class HookeJeevesControllerHelper {
     // Helper constants.
     public static final String EQUALS   =    "=";
     public static final String BRACES   =   "{}";

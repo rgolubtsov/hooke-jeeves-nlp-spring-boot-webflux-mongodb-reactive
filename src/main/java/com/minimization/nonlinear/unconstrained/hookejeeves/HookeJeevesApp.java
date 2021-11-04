@@ -1,6 +1,6 @@
 /*
  * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * HookeJeevesApplication.java
+ * HookeJeevesApp.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.5.9
@@ -31,7 +31,7 @@ import com.mongodb.reactivestreams.client.MongoCollection;
  * @since   0.0.1
  */
 @SpringBootApplication
-public class HookeJeevesApplication {
+public class HookeJeevesApp {
     /** The database name to connect to. */
     private static final String TEST_DATABASE = "test";
 
@@ -54,14 +54,14 @@ public class HookeJeevesApplication {
         collection = database.getCollection(INITIAL_DATA_COLL);
 
         // Starting up the app.
-        SpringApplication.run(HookeJeevesApplication.class, args);
+        SpringApplication.run(HookeJeevesApp.class, args);
 
         // Making final cleanups.
         _cleanups_fixate(client);
     }
 
     // Helper method: Makes final buffer cleanups, releases resources, etc.
-    private static void _cleanups_fixate(final MongoClient client) {
+    private static final void _cleanups_fixate(final MongoClient client) {
         // Closing the database client.
 //      client.close();
     }

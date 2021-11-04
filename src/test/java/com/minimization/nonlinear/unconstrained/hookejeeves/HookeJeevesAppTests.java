@@ -1,6 +1,6 @@
 /*
  * src/test/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * HookeJeevesApplicationTests.java
+ * HookeJeevesAppTests.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.5.9
@@ -24,7 +24,7 @@ import java.lang.invoke.MethodHandles;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
 
-import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
+import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
 
 /**
  * The test class for the microservice.
@@ -33,7 +33,7 @@ import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.Co
  * @since   0.0.1
  */
 @SpringBootTest
-class HookeJeevesApplicationTests {
+class HookeJeevesAppTests {
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()
