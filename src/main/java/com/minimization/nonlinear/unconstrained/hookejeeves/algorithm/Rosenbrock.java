@@ -41,7 +41,7 @@ public final class Rosenbrock {
      *
      * @return The objective function value.
      */
-    public static double f(final double[] x, final int n) {
+    public static final double f(final double[] x, final int n) {
         double a;
         double b;
         double c;
