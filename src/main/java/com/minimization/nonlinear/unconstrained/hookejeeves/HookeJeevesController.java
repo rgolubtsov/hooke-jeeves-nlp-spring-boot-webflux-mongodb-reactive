@@ -1,6 +1,6 @@
 /*
  * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * controller/HookeJeevesController.java
+ * HookeJeevesController.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.5.9
@@ -14,7 +14,7 @@
  * (See the LICENSE file at the top of the source tree.)
  */
 
-package com.minimization.nonlinear.unconstrained.hookejeeves.controller;
+package com.minimization.nonlinear.unconstrained.hookejeeves;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +35,8 @@ import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.*;
 
-import static com.minimization.nonlinear.unconstrained.hookejeeves.controller.ControllerHelper.*;
-import        com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesApplication;
+import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
+import        com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesApp;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.HookeJeeves;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Rosenbrock;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woods;
@@ -195,12 +195,12 @@ public class HookeJeevesController {
     }
 
     // Helper method: Puts initial guess data to the database.
-    private void _put_to_db(final String nvars,
-                            final String startpt0,
-                            final String startpt1,
-                            final String startpt2,
-                            final String startpt3,
-                            final String rho) {
+    private final void _put_to_db(final String nvars,
+                                  final String startpt0,
+                                  final String startpt1,
+                                  final String startpt2,
+                                  final String startpt3,
+                                  final String rho) {
 
         // Creating a new document containing initial guess data.
         document = new Document();
@@ -217,9 +217,9 @@ public class HookeJeevesController {
         document.append(RHO, rho);
 
         // Putting initial guess data to the database.
-        HookeJeevesApplication.collection
-                              .insertOne(document)
-                              .subscribe(new PutSubscriber<Document>());
+        HookeJeevesApp.collection
+                      .insertOne(document)
+                      .subscribe(new PutSubscriber<Document>());
     }
 
     /**
@@ -285,7 +285,7 @@ public class HookeJeevesController {
              * $ mongo
              * > db.hooke_initial_guess_data.find({nvars: "2"}).sort({_id: -1}).limit(1)
              */
-            HookeJeevesApplication.collection
+            HookeJeevesApp.collection
                 .find(eq(NVARS, TWO))
                 .sort(new Document(_ID, -1))
                 .first().subscribe(subscriber);
@@ -294,10 +294,14 @@ public class HookeJeevesController {
 
             document = subscriber.getDocument();
 
-            nvars      = new Integer(document.getString(NVARS   )).intValue   ();
-            startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
-            startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
-            rho        = new Double (document.getString(RHO     )).doubleValue();
+            try {
+                nvars      = Integer.parseInt   (document.getString(NVARS   ));
+                startpt[0] = Double .parseDouble(document.getString(STARTPT0));
+                startpt[1] = Double .parseDouble(document.getString(STARTPT1));
+                rho        = Double .parseDouble(document.getString(RHO     ));
+            } catch (NumberFormatException e) {
+                is_request_malformed = true;
+            }
 
             l.debug(req_method + SPACE  + SPACE
                   + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
@@ -309,6 +313,10 @@ public class HookeJeevesController {
                     startpt[1],
                     rho);
 
+            if (is_request_malformed) {
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+
             objfun_cls = Rosenbrock.class;
         } else if (fx.compareTo(WOODS     ) == 0) {
             /*
@@ -319,7 +327,7 @@ public class HookeJeevesController {
              * $ mongo
              * > db.hooke_initial_guess_data.find({nvars: "4"}).sort({_id: -1}).limit(1)
              */
-            HookeJeevesApplication.collection
+            HookeJeevesApp.collection
                 .find(eq(NVARS, FOUR))
                 .sort(new Document(_ID, -1))
                 .first().subscribe(subscriber);
@@ -328,12 +336,16 @@ public class HookeJeevesController {
 
             document = subscriber.getDocument();
 
-            nvars      = new Integer(document.getString(NVARS   )).intValue   ();
-            startpt[0] = new Double (document.getString(STARTPT0)).doubleValue();
-            startpt[1] = new Double (document.getString(STARTPT1)).doubleValue();
-            startpt[2] = new Double (document.getString(STARTPT2)).doubleValue();
-            startpt[3] = new Double (document.getString(STARTPT3)).doubleValue();
-            rho        = new Double (document.getString(RHO     )).doubleValue();
+            try {
+                nvars      = Integer.parseInt   (document.getString(NVARS   ));
+                startpt[0] = Double .parseDouble(document.getString(STARTPT0));
+                startpt[1] = Double .parseDouble(document.getString(STARTPT1));
+                startpt[2] = Double .parseDouble(document.getString(STARTPT2));
+                startpt[3] = Double .parseDouble(document.getString(STARTPT3));
+                rho        = Double .parseDouble(document.getString(RHO     ));
+            } catch (NumberFormatException e) {
+                is_request_malformed = true;
+            }
 
             l.debug(req_method + SPACE  + SPACE
                   + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
@@ -348,6 +360,10 @@ public class HookeJeevesController {
                     startpt[2],
                     startpt[3],
                     rho);
+
+            if (is_request_malformed) {
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
 
             objfun_cls = Woods.class;
         } else {
