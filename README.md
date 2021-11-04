@@ -37,8 +37,7 @@ $ ./mvnw package
 
 (**Note:** the `package` target above includes `test`.)
 
-Or **build** the microservice using **GNU Make** (optional, but for convenience &mdash; it covers the same **Maven W
-rapper** build workflow under the hood):
+Or **build** the microservice using **GNU Make** (optional, but for convenience &mdash; it covers the same **Maven Wrapper** build workflow under the hood):
 
 ```
 $ make clean
