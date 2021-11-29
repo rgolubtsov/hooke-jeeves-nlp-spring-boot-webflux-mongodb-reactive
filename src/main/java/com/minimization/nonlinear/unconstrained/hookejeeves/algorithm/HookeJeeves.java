@@ -3,7 +3,7 @@
  * algorithm/HookeJeeves.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.5.9
+ * Microservice. Version 0.6.0
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -20,7 +20,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves.algorithm;
  * The <code>HookeJeeves</code> class contains methods for solving a nonlinear
  * optimization problem using the algorithm of Hooke and Jeeves.
  *
- * @version 0.5.9
+ * @version 0.6.0
  * @since   0.0.1
  */
 public class HookeJeeves {
