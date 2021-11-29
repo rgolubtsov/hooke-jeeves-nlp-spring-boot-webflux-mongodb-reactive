@@ -94,34 +94,34 @@ HTTP request param | *Rosenbrock* test problem | *Woods* test problem
 `rho`              |  `0.5`                    |  `0.6`
 
 ```
-$ curl -vXPUT http://localhost:8080/store/rosenbrock
+$ curl -vXPUT http://localhost:8765/store/rosenbrock
 ...
-$ curl -vXPUT http://localhost:8080/store/woods
+$ curl -vXPUT http://localhost:8765/store/woods
 ...
 ```
 
 or using explicit values:
 
 ```
-$ curl -vXPUT 'http://localhost:8080/store/rosenbrock?nvars=2&startpt0=-0.1111&startpt1=0.2222&rho=0.5678'
+$ curl -vXPUT 'http://localhost:8765/store/rosenbrock?nvars=2&startpt0=-0.1111&startpt1=0.2222&rho=0.5678'
 ...
-$ curl -vXPUT 'http://localhost:8080/store/woods?nvars=4&startpt0=-4.4444&startpt1=-2.2222&startpt2=-4.4444&startpt3=-2.2222&rho=0.6789'
+$ curl -vXPUT 'http://localhost:8765/store/woods?nvars=4&startpt0=-4.4444&startpt1=-2.2222&startpt2=-4.4444&startpt3=-2.2222&rho=0.6789'
 ...
 ```
 
 **Solve** a nonlinear optimization problem using the algorithm of Hooke and Jeeves (against **Rosenbrock** or **Woods** test function):
 
 ```
-$ curl -v http://localhost:8080/solve      # <== GET.  Defaults to ?fx=rosenbrock
+$ curl -v http://localhost:8765/solve      # <== GET.  Defaults to ?fx=rosenbrock
 ...
-$ curl -v http://localhost:8080/solve?fx=rosenbrock
+$ curl -v http://localhost:8765/solve?fx=rosenbrock
 ...
-$ curl -v http://localhost:8080/solve?fx=woods
+$ curl -v http://localhost:8765/solve?fx=woods
 ...
-$ curl -vd '' http://localhost:8080/solve  # <== POST. Defaults to ?fx=rosenbrock
+$ curl -vd '' http://localhost:8765/solve  # <== POST. Defaults to ?fx=rosenbrock
 ...
-$ curl -vd '' http://localhost:8080/solve?fx=rosenbrock
+$ curl -vd '' http://localhost:8765/solve?fx=rosenbrock
 ...
-$ curl -vd '' http://localhost:8080/solve?fx=woods
+$ curl -vd '' http://localhost:8765/solve?fx=woods
 ...
 ```
