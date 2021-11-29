@@ -50,11 +50,9 @@ $ make jar
 ...
 $ make docs
 ...
-$ make all  # <== Or make all the targets at one pass: compile, jar, docs.
+$ make all  # <== Or make all the targets at one pass: compile, jar, docs (except test).
 ...
 ```
-
-(**Note:** the `jar` target above includes `test`.)
 
 **Generate** API documentation: `$ javadoc @Joxyfile`, or using **[Doxygen](http://doxygen.org "Doxygen")**: `$ doxygen`. (**Note:** the `docs` target above covers both variants.)
 

@@ -25,14 +25,15 @@ DOXYGEN_BACKGROUND_IMG = \
 static/img/doxygen/hookejeeves-doxygen-background-795x195.png
 
 # Specify flags and other vars here.
-MAVEN_W = ./mvnw
-JAVADOC = javadoc
-JDFLAGS = @Joxyfile
-DOXYGEN = doxygen
-ECHO    = @echo
-CP      = cp
-CPFLAGS = -vf
-RMFLAGS = -vR
+MAVEN_W    = ./mvnw
+JAVADOC    = javadoc
+JDFLAGS    = @Joxyfile
+DOXYGEN    = doxygen
+ECHO       = @echo
+SKIP_TESTS = -DskipTests
+CP         = cp
+CPFLAGS    = -vf
+RMFLAGS    = -vR
 
 # Making the first target (the microservice itself).
 $(SERV):
@@ -45,7 +46,7 @@ $(TEST):
 
 # Making the third target (runnable JAR file).
 $(JAR):
-	$(MAVEN_W) package
+	$(MAVEN_W) package $(SKIP_TESTS)
 	$(ECHO)
 
 # Making the fourth target (API docs).
