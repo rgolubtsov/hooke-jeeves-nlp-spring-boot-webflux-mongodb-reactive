@@ -233,8 +233,9 @@ public class HookeJeevesController {
      * @param __ The flag, indicating whether the POST request method is used.
      *           (For that to be effective, this flag should be null.)
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object, containing the response body
+     *         in JSON representation, along with a specific HTTP status code
+     *         provided.
      */
     @GetMapping(REST_SOLVE)
     public ResponseEntity solve_the_problem(
@@ -392,7 +393,17 @@ public class HookeJeevesController {
             System.out.println("True answer: f(1, 1, 1, 1) = 0.");
         }
 
-        return new ResponseEntity(HttpStatus.OK);
+        HookeJeevesResponsePojo resp_body = null;
+
+               if (fx.compareTo(ROSENBROCK) == 0) {
+            resp_body = new HookeJeevesResponsePojo(
+                nvars, startpt[0], startpt[1], rho);
+        } else if (fx.compareTo(WOODS     ) == 0) {
+            resp_body = new HookeJeevesResponsePojo(
+                nvars, startpt[0], startpt[1], startpt[2], startpt[3], rho);
+        }
+
+        return new ResponseEntity(resp_body, HttpStatus.OK);
     }
 
     /**
