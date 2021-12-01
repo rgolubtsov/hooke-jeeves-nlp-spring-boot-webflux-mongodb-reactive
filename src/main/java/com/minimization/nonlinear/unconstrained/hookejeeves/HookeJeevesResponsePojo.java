@@ -96,7 +96,34 @@ public class HookeJeevesResponsePojo {
     }
 
     /**
-     * The effective constructor.
+     * Constructs the response object for two starting point coordinates.
+     * <br />
+     * <br />This is commonly effective when the objective function
+     * is the Rosenbrock's parabolic valley function.
+     *
+     * @param _nvars    The number of variables.
+     * @param _startpt0 The 1st starting point coordinate.
+     * @param _startpt1 The 2nd starting point coordinate.
+     * @param _rho      The rho value.
+     */
+    public HookeJeevesResponsePojo(final int    _nvars,
+                                   final double _startpt0,
+                                   final double _startpt1,
+                                   final double _rho) {
+
+        nvars    = _nvars;
+        startpt0 = _startpt0;
+        startpt1 = _startpt1;
+        startpt2 = .0;
+        startpt3 = .0;
+        rho      = _rho;
+    }
+
+    /**
+     * Constructs the response object for four starting point coordinates.
+     * <br />
+     * <br />This is commonly effective when the objective function
+     * is the so-called &quot;Woods&quot; function.
      *
      * @param _nvars    The number of variables.
      * @param _startpt0 The 1st starting point coordinate.
