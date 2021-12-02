@@ -23,60 +23,31 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * @since   0.6.0
  */
 public class HookeJeevesResponsePojo {
-    /** The number of variables. */
-    private final int nvars;
-
-    /** The starting point coordinates. */
-    private final double[] startpt;
-
-    /** The rho value. */
-    private final double rho;
+    /**
+     * The &quot;<code>inputs</code>&quot; POJO,
+     * returning as part of the response POJO.
+     */
+    private final HookeJeevesResponsePojoInputs inputs;
 
     /**
-     * The accessor method for the number of variables.
+     * The accessor method for the &quot;<code>inputs</code>&quot; POJO,
+     * returning as part of the response POJO.
      *
-     * @return The number of variables.
+     * @return The &quot;<code>inputs</code>&quot; POJO,
+     *         returning as part of the response POJO.
      */
-    public int getNvars() {
-        return nvars;
-    }
-
-    /**
-     * The accessor method for the starting point coordinates.
-     *
-     * @return The array of starting point coordinates.
-     */
-    public double[] getStartpt() {
-        return startpt;
-    }
-
-    /**
-     * The accessor method for the rho value.
-     *
-     * @return The rho value.
-     */
-    public double getRho() {
-        return rho;
+    public HookeJeevesResponsePojoInputs getInputs() {
+        return inputs;
     }
 
     /**
      * Constructs the response object.
      *
-     * @param _nvars   The number of variables.
-     * @param _startpt The starting point coordinates.
-     * @param _rho     The rho value.
+     * @param _inputs The &quot;<code>inputs</code>&quot; POJO,
+     *                returning as part of the response POJO.
      */
-    public HookeJeevesResponsePojo(final int      _nvars,
-                                   final double[] _startpt,
-                                   final double   _rho) {
-
-        nvars   = _nvars;
-        startpt = new double[nvars];
-        rho     = _rho;
-
-        for (int i = 0; i < nvars; i++) {
-            startpt[i] = _startpt[i];
-        }
+    public HookeJeevesResponsePojo(final HookeJeevesResponsePojoInputs _inputs) {
+        inputs = _inputs;
     }
 }
 
