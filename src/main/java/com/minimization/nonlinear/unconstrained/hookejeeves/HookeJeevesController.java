@@ -393,8 +393,8 @@ public class HookeJeevesController {
             System.out.println("True answer: f(1, 1, 1, 1) = 0.");
         }
 
-        HookeJeevesResponsePojo resp_body
-            = new HookeJeevesResponsePojo(nvars, startpt, rho);
+        HookeJeevesResponsePojo resp_body = new HookeJeevesResponsePojo(
+            new HookeJeevesResponsePojoInputs(nvars, startpt, rho));
 
         return new ResponseEntity(resp_body, HttpStatus.OK);
     }
