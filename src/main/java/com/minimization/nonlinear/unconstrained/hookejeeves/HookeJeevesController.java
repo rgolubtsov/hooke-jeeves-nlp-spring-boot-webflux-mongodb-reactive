@@ -244,7 +244,7 @@ public class HookeJeevesController {
 
         int nvars=0;
         int itermax;
-        int jj;
+        int jj=0;
         int i;
 
         double[] startpt = new double[HookeJeeves.VARS];
@@ -394,7 +394,13 @@ public class HookeJeevesController {
         }
 
         HookeJeevesResponsePojo resp_body = new HookeJeevesResponsePojo(
-            new HookeJeevesResponsePojoInputs(nvars, startpt, rho));
+            new HookeJeevesResponsePojoInputs(nvars, startpt, rho),
+            new HookeJeevesResponsePojoOutput(nvars,jj,endpt, 0.0)
+        );//                                                   ^
+        //                                                     |
+        //                                                     +-------+
+        //                                                             |
+        // TODO: Implement calculating the objective function value.---+
 
         return new ResponseEntity(resp_body, HttpStatus.OK);
     }
