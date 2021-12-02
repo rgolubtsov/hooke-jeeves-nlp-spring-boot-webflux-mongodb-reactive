@@ -30,6 +30,12 @@ public class HookeJeevesResponsePojo {
     private final HookeJeevesResponsePojoInputs inputs;
 
     /**
+     * The &quot;<code>output</code>&quot; POJO,
+     * returning as part of the response POJO.
+     */
+    private final HookeJeevesResponsePojoOutput output;
+
+    /**
      * The accessor method for the &quot;<code>inputs</code>&quot; POJO,
      * returning as part of the response POJO.
      *
@@ -41,13 +47,29 @@ public class HookeJeevesResponsePojo {
     }
 
     /**
+     * The accessor method for the &quot;<code>output</code>&quot; POJO,
+     * returning as part of the response POJO.
+     *
+     * @return The &quot;<code>output</code>&quot; POJO,
+     *         returning as part of the response POJO.
+     */
+    public HookeJeevesResponsePojoOutput getOutput() {
+        return output;
+    }
+
+    /**
      * Constructs the response object.
      *
      * @param _inputs The &quot;<code>inputs</code>&quot; POJO,
      *                returning as part of the response POJO.
+     * @param _output The &quot;<code>output</code>&quot; POJO,
+     *                returning as part of the response POJO.
      */
-    public HookeJeevesResponsePojo(final HookeJeevesResponsePojoInputs _inputs) {
+    public HookeJeevesResponsePojo(final HookeJeevesResponsePojoInputs _inputs,
+                                   final HookeJeevesResponsePojoOutput _output)
+    {
         inputs = _inputs;
+        output = _output;
     }
 }
 
