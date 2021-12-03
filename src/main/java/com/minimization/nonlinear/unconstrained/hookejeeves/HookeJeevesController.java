@@ -128,7 +128,11 @@ public class HookeJeevesController {
         }
 
         if (is_request_malformed) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            HookeJeevesResponsePojoError resp_body_err
+                = new HookeJeevesResponsePojoError(
+                    ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS);
+
+            return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
         }
 
         // Putting initial guess data to the database.
@@ -185,7 +189,11 @@ public class HookeJeevesController {
         }
 
         if (is_request_malformed) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            HookeJeevesResponsePojoError resp_body_err
+                = new HookeJeevesResponsePojoError(
+                    ERR_REQ_PARAMS_WOODS_NEEDS_FOUR_VARS);
+
+            return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
         }
 
         // Putting initial guess data to the database.
@@ -258,6 +266,8 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
+        HookeJeevesResponsePojoError resp_body_err;
+
         // When calling solve_the_problem()'s POST counterpart,
         // changing the method name accordingly.
         if (__ == null) {
@@ -272,7 +282,10 @@ public class HookeJeevesController {
         }
 
         if (is_request_malformed) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            resp_body_err = new HookeJeevesResponsePojoError(
+                ERR_REQ_PARAMS_OBJFUN_UNKNOWN);
+
+            return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
         }
 
         GetSubscriber subscriber = new GetSubscriber<Document>();
@@ -315,7 +328,11 @@ public class HookeJeevesController {
                     rho);
 
             if (is_request_malformed) {
-                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                resp_body_err = new HookeJeevesResponsePojoError(
+                    ERR_FROM_DB_VARS_NUMBERS_EXPECTED);
+
+                return new ResponseEntity(resp_body_err,
+                    HttpStatus.BAD_REQUEST);
             }
 
             objfun_cls = Rosenbrock.class;
@@ -363,7 +380,11 @@ public class HookeJeevesController {
                     rho);
 
             if (is_request_malformed) {
-                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                resp_body_err = new HookeJeevesResponsePojoError(
+                    ERR_FROM_DB_VARS_NUMBERS_EXPECTED);
+
+                return new ResponseEntity(resp_body_err,
+                    HttpStatus.BAD_REQUEST);
             }
 
             objfun_cls = Woods.class;
