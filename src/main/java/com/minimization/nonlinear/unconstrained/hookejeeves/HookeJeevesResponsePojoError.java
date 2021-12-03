@@ -1,6 +1,6 @@
 /*
- * src/test/java/com/minimization/nonlinear/unconstrained/hookejeeves/
- * HookeJeevesAppTests.java
+ * src/main/java/com/minimization/nonlinear/unconstrained/hookejeeves/
+ * HookeJeevesResponsePojoError.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
  * Microservice. Version 0.6.7
@@ -16,32 +16,34 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
-
-import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Test;
-
-import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
-
 /**
- * The test class for the microservice.
+ * The POJO representation, returning in the response
+ * when erroneous behavior is occurred.
  *
  * @version 0.6.7
- * @since   0.0.1
+ * @since   0.6.6
  */
-@SpringBootTest
-class HookeJeevesAppTests {
-    /** The SLF4J logger. */
-    private static final Logger l = LoggerFactory.getLogger(
-        MethodHandles.lookup().lookupClass()
-    );
+public class HookeJeevesResponsePojoError {
+    /** The error message. */
+    private final String error;
 
-    /** Dummy for a while... Does nothing. */
-    @Test
-    void contextLoads() { l.debug(BRACES, BRACES); }
+    /**
+     * The accessor method for the error message.
+     *
+     * @return The error message.
+     */
+    public String getError() {
+        return error;
+    }
+
+    /**
+     * The effective constructor.
+     *
+     * @param _error The error message.
+     */
+    public HookeJeevesResponsePojoError(final String _error) {
+        error = _error;
+    }
 }
 
 // vim:set nu et ts=4 sw=4:

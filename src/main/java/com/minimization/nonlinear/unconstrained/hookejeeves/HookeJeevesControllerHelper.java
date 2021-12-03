@@ -3,7 +3,7 @@
  * HookeJeevesControllerHelper.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.6.0
+ * Microservice. Version 0.6.7
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -31,7 +31,7 @@ import org.bson.Document;
 /**
  * The helper class for the controller and the related ones.
  *
- * @version 0.6.0
+ * @version 0.6.7
  * @since   0.0.1
  */
 public class HookeJeevesControllerHelper {
@@ -42,6 +42,23 @@ public class HookeJeevesControllerHelper {
     public static final String V_BAR    =    "|";
     public static final String DBG_PREF = "==> ";
     public static final String NEW_LINE = System.lineSeparator();
+
+    // Common error messages.
+    public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
+        = "The Rosenbrock function requires exactly two starting point "
+        + "coordinates. Please check your inputs.";
+    public static final String ERR_REQ_PARAMS_WOODS_NEEDS_FOUR_VARS
+        = "The Woods function requires exactly four starting point "
+        + "coordinates. Please check your inputs.";
+    public static final String ERR_REQ_PARAMS_OBJFUN_UNKNOWN
+        = "Objective function name provided is unknown: "
+        + "it must be set as 'rosenbrock' for the Rosenbrock function, "
+        + "or 'woods' for the Woods function. Please check your inputs.";
+    public static final String ERR_FROM_DB_VARS_NUMBERS_EXPECTED
+        = "The number of variables (coordinates) must take positive integer "
+        + "values, starting point coordinates must take double-precision "
+        + "values, the rho factor must take double-precision values. "
+        + "Please check your inputs.";
 
     // Logging messages used in Reactive Streams Subscriber classes.
     private static final String PUT_ON_COMPLETE = "Data successfully sent.";
