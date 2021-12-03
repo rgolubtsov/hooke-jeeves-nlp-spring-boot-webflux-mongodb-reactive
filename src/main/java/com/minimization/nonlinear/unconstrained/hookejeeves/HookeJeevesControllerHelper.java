@@ -43,6 +43,23 @@ public class HookeJeevesControllerHelper {
     public static final String DBG_PREF = "==> ";
     public static final String NEW_LINE = System.lineSeparator();
 
+    // Common error messages.
+    public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
+        = "The Rosenbrock function requires exactly two starting point "
+        + "coordinates. Please check your inputs.";
+    public static final String ERR_REQ_PARAMS_WOODS_NEEDS_FOUR_VARS
+        = "The Woods function requires exactly four starting point "
+        + "coordinates. Please check your inputs.";
+    public static final String ERR_REQ_PARAMS_OBJFUN_UNKNOWN
+        = "Objective function name provided is unknown: "
+        + "it must be set as 'rosenbrock' for the Rosenbrock function, "
+        + "or 'woods' for the Woods function. Please check your inputs.";
+    public static final String ERR_REQ_PARAMS_NOT_NUMBERS
+        = "The number of variables (coordinates) must take positive integer "
+        + "values, starting point coordinates must take double-precision "
+        + "values, the rho factor must take double-precision values. "
+        + "Please check your inputs.";
+
     // Logging messages used in Reactive Streams Subscriber classes.
     private static final String PUT_ON_COMPLETE = "Data successfully sent.";
     private static final String PUT_ON_ERROR    = "Error occurred in sending data:";
