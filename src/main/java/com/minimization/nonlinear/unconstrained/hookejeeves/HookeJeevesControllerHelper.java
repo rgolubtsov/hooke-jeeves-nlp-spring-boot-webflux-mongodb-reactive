@@ -54,7 +54,7 @@ public class HookeJeevesControllerHelper {
         = "Objective function name provided is unknown: "
         + "it must be set as 'rosenbrock' for the Rosenbrock function, "
         + "or 'woods' for the Woods function. Please check your inputs.";
-    public static final String ERR_REQ_PARAMS_NOT_NUMBERS
+    public static final String ERR_FROM_DB_VARS_NUMBERS_EXPECTED
         = "The number of variables (coordinates) must take positive integer "
         + "values, starting point coordinates must take double-precision "
         + "values, the rho factor must take double-precision values. "
