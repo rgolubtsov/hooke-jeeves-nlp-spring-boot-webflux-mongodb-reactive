@@ -56,15 +56,19 @@ public class HookeJeevesControllerHelper {
         + "or 'woods' for the Woods function. Please check your inputs.";
     public static final String ERR_FROM_DB_VARS_NUMBERS_EXPECTED
         = "The number of variables (coordinates) must take positive integer "
-        + "values, starting point coordinates must take double-precision "
-        + "values, the rho factor must take double-precision values. "
-        + "Please check your inputs.";
+        + "values, starting point coordinates must take floating-point "
+        + "values, the rho factor must take floating-point values. "
+        + "Please check incoming data from DB.";
 
     // Logging messages used in Reactive Streams Subscriber classes.
-    private static final String PUT_ON_COMPLETE = "Data successfully sent.";
-    private static final String PUT_ON_ERROR    = "Error occurred in sending data:";
-    private static final String GET_ON_COMPLETE = "Data successfully received.";
-    private static final String GET_ON_ERROR    = "Error occurred in receiving data:";
+    private static final String PUT_ON_COMPLETE
+        = "Data successfully sent.";
+    private static final String PUT_ON_ERROR
+        = "Error occurred in sending data:";
+    private static final String GET_ON_COMPLETE
+        = "Data successfully received.";
+    private static final String GET_ON_ERROR
+        = "Error occurred in receiving data:";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
