@@ -390,26 +390,19 @@ public class HookeJeevesController {
             }
 
             objfun_cls = Woods.class;
-        } else {
-            objfun_cls = null;
         }
 
         itermax = HookeJeeves.IMAX;
         epsilon = HookeJeeves.EPSMIN;
 
-        if (objfun_cls != null) {
-            jj = new HookeJeeves()
-                .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
+        jj = new HookeJeeves()
+            .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
 
-            System.out.println("\n\n\nHOOKE USED " + jj
-                             + " ITERATIONS, AND RETURNED");
+        System.out.println("\n\n\nHOOKE USED " + jj
+                         + " ITERATIONS, AND RETURNED");
 
-            for (i = 0; i < nvars; i++) {
-                System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
-            }
-        } else {
-            // TODO: Implement returning a specific response
-            //       when the objective function is not defined.
+        for (i = 0; i < nvars; i++) {
+            System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
         }
 
         if (fx.compareTo(WOODS) == 0) {
