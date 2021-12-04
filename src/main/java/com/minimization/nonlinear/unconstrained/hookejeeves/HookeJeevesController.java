@@ -3,7 +3,7 @@
  * HookeJeevesController.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.6.7
+ * Microservice. Version 0.6.9
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -44,7 +44,7 @@ import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woo
 /**
  * The controller class of the microservice.
  *
- * @version 0.6.7
+ * @version 0.6.9
  * @since   0.0.1
  */
 @RestController
@@ -99,8 +99,9 @@ public class HookeJeevesController {
      * @param startpt1 The 2nd starting point coordinate.
      * @param rho      The rho value.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object with a specific HTTP status code
+     *         provided (and the response body in JSON representation
+     *         in case of the request payload is not valid).
      */
     @PutMapping(REST_STORE + SLASH + ROSENBROCK)
     public ResponseEntity store_initial_guess_data(
@@ -138,7 +139,7 @@ public class HookeJeevesController {
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     /**
@@ -154,8 +155,9 @@ public class HookeJeevesController {
      * @param startpt3 The 4th starting point coordinate.
      * @param rho      The rho value.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object with a specific HTTP status code
+     *         provided (and the response body in JSON representation
+     *         in case of the request payload is not valid).
      */
     @PutMapping(REST_STORE + SLASH + WOODS)
     public ResponseEntity store_initial_guess_data(
@@ -199,7 +201,7 @@ public class HookeJeevesController {
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, startpt2, startpt3, rho);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     // Helper method: Puts initial guess data to the database.
@@ -260,7 +262,7 @@ public class HookeJeevesController {
         double   epsilon;
         double[] endpt   = new double[HookeJeeves.VARS];
 
-        Class objfun_cls;
+        Class objfun_cls = null;
 
         String req_method = RequestMethod.GET + SPACE;
 
@@ -388,26 +390,19 @@ public class HookeJeevesController {
             }
 
             objfun_cls = Woods.class;
-        } else {
-            objfun_cls = null;
         }
 
         itermax = HookeJeeves.IMAX;
         epsilon = HookeJeeves.EPSMIN;
 
-        if (objfun_cls != null) {
-            jj = new HookeJeeves()
-                .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
+        jj = new HookeJeeves()
+            .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
 
-            System.out.println("\n\n\nHOOKE USED " + jj
-                             + " ITERATIONS, AND RETURNED");
+        System.out.println("\n\n\nHOOKE USED " + jj
+                         + " ITERATIONS, AND RETURNED");
 
-            for (i = 0; i < nvars; i++) {
-                System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
-            }
-        } else {
-            // TODO: Implement returning a specific response
-            //       when the objective function is not defined.
+        for (i = 0; i < nvars; i++) {
+            System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
         }
 
         if (fx.compareTo(WOODS) == 0) {
@@ -435,13 +430,15 @@ public class HookeJeevesController {
      *
      * @param fx The name of the user-supplied objective function f(x,n).
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object, containing the response body
+     *         in JSON representation, along with a specific HTTP status code
+     *         provided.
      */
     @PostMapping(REST_SOLVE)
     public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx) {
 
+        // Simply calling its GET counterpart.
         return solve_the_problem(fx, null);
     }
 }

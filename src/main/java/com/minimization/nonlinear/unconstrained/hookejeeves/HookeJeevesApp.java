@@ -3,7 +3,7 @@
  * HookeJeevesApp.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.6.7
+ * Microservice. Version 0.6.9
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -27,7 +27,7 @@ import com.mongodb.reactivestreams.client.MongoCollection;
 /**
  * The startup class of the microservice.
  *
- * @version 0.6.7
+ * @version 0.6.9
  * @since   0.0.1
  */
 @SpringBootApplication
