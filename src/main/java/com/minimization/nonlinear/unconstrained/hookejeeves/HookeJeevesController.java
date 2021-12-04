@@ -262,7 +262,7 @@ public class HookeJeevesController {
         double   epsilon;
         double[] endpt   = new double[HookeJeeves.VARS];
 
-        Class objfun_cls;
+        Class objfun_cls = null;
 
         String req_method = RequestMethod.GET + SPACE;
 
