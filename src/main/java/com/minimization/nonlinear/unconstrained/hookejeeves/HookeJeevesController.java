@@ -99,8 +99,9 @@ public class HookeJeevesController {
      * @param startpt1 The 2nd starting point coordinate.
      * @param rho      The rho value.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object with a specific HTTP status code
+     *         provided (and the response body in JSON representation
+     *         in case of the request payload is not valid).
      */
     @PutMapping(REST_STORE + SLASH + ROSENBROCK)
     public ResponseEntity store_initial_guess_data(
@@ -138,7 +139,7 @@ public class HookeJeevesController {
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, null, null, rho);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     /**
@@ -154,8 +155,9 @@ public class HookeJeevesController {
      * @param startpt3 The 4th starting point coordinate.
      * @param rho      The rho value.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object with a specific HTTP status code
+     *         provided (and the response body in JSON representation
+     *         in case of the request payload is not valid).
      */
     @PutMapping(REST_STORE + SLASH + WOODS)
     public ResponseEntity store_initial_guess_data(
@@ -199,7 +201,7 @@ public class HookeJeevesController {
         // Putting initial guess data to the database.
         _put_to_db(nvars, startpt0, startpt1, startpt2, startpt3, rho);
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     // Helper method: Puts initial guess data to the database.
@@ -435,13 +437,15 @@ public class HookeJeevesController {
      *
      * @param fx The name of the user-supplied objective function f(x,n).
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object, containing the response body
+     *         in JSON representation, along with a specific HTTP status code
+     *         provided.
      */
     @PostMapping(REST_SOLVE)
     public ResponseEntity solve_the_problem(
         @RequestParam(name=FX, defaultValue=ROSENBROCK) final String fx) {
 
+        // Simply calling its GET counterpart.
         return solve_the_problem(fx, null);
     }
 }
