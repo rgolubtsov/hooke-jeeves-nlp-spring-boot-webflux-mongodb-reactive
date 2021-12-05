@@ -3,7 +3,7 @@
  * algorithm/Rosenbrock.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.6.9
+ * Microservice. Version 0.7.0
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -23,7 +23,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves.algorithm;
  * <br />The objective function in this case is the Rosenbrock's parabolic
  * valley function.
  *
- * @version 0.6.9
+ * @version 0.7.0
  * @since   0.0.1
  */
 public final class Rosenbrock {
