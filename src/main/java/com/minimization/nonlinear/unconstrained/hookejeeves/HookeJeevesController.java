@@ -241,7 +241,8 @@ public class HookeJeevesController {
      *
      * @param fx The name of the user-supplied objective function f(x,n).
      * @param __ The flag, indicating whether the POST request method is used.
-     *           (For that to be effective, this flag should be null.)
+     *           (For that to be effective, this flag should be
+     *           <code>null</code>.)
      *
      * @return The ResponseEntity object, containing the response body
      *         in JSON representation, along with a specific HTTP status code
