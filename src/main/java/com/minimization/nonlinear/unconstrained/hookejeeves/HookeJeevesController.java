@@ -264,6 +264,8 @@ public class HookeJeevesController {
 
         Class objfun_cls = null;
 
+        double f_x = .0;
+
         String req_method = RequestMethod.GET + SPACE;
 
         boolean is_request_malformed = false;
@@ -409,14 +411,15 @@ public class HookeJeevesController {
             System.out.println("True answer: f(1, 1, 1, 1) = 0.");
         }
 
+               if (objfun_cls.equals(Rosenbrock.class)) {
+            f_x = Rosenbrock.f(endpt, nvars);
+        } else if (objfun_cls.equals(     Woods.class)) {
+            f_x =      Woods.f(endpt, nvars);
+        }
+
         HookeJeevesResponsePojo resp_body = new HookeJeevesResponsePojo(
             new HookeJeevesResponsePojoInputs(nvars, startpt, rho),
-            new HookeJeevesResponsePojoOutput(nvars,jj,endpt, 0.0)
-        );//                                                   ^
-        //                                                     |
-        //                                                     +-------+
-        //                                                             |
-        // TODO: Implement calculating the objective function value.---+
+            new HookeJeevesResponsePojoOutput(nvars,jj,endpt, f_x));
 
         return new ResponseEntity(resp_body, HttpStatus.OK);
     }
