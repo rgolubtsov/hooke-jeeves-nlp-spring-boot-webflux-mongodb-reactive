@@ -73,10 +73,6 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 
 ```
 $ java -jar target/hooke-jeeves-0.6.9.jar; echo $?
-$ #                                      ^   ^   ^
-$ #                                      |   |   |
-$ # -------------------------------------+---+---+
-$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
