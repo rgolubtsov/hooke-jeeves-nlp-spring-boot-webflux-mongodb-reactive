@@ -24,6 +24,10 @@ import java.lang.invoke.MethodHandles;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import java.io.InputStream;
+
+import java.util.Properties;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -50,6 +54,8 @@ public class HookeJeevesControllerHelper {
     private static final int TWELVE = 12;
 
     // Common error messages.
+    public static final String ERR_DBL_VALUE_SCALE_UNABLE_TO_GET
+        = "Unable to get scaling factor for double-precision value.";
     public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
         = "The Rosenbrock function requires exactly two starting point "
         + "coordinates. Please check your inputs.";
@@ -65,6 +71,14 @@ public class HookeJeevesControllerHelper {
         + "values, starting point coordinates must take floating-point "
         + "values, the rho factor must take floating-point values. "
         + "Please check incoming data from DB.";
+
+    /** The application properties filename. */
+    private static final String APP_PROPS = "application.properties";
+
+    // Application properties keys for double-precision
+    // values-related manipulations.
+    private static final String DBL_VALUE_SCALE
+        = "value.double-precision.scaling-factor";
 
     // Logging messages used in Reactive Streams Subscriber classes.
     private static final String PUT_ON_COMPLETE
@@ -256,6 +270,39 @@ public class HookeJeevesControllerHelper {
 
         return BigDecimal.valueOf(value).setScale((scale > TWELVE) ? TWELVE :
                                   scale, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    // Helper method. Retrieves the scaling factor for a double-precision value
+    //                from application properties.
+    public static final int _get_scaling_factor() {
+        Properties props = _get_props(ERR_DBL_VALUE_SCALE_UNABLE_TO_GET);
+
+        String dbl_value_scale = props.getProperty(DBL_VALUE_SCALE);
+
+        if (dbl_value_scale != null) {
+            return Integer.parseInt(dbl_value_scale); // <== May throw NFE !
+        }
+
+        return TWELVE;
+    }
+
+    // Helper method. Used to get the application properties object.
+    private static final Properties _get_props(final String error_msg) {
+        Properties props = new Properties();
+
+        ClassLoader loader
+            = HookeJeevesControllerHelper.class.getClassLoader();
+
+        InputStream data = loader.getResourceAsStream(APP_PROPS);
+
+        try {
+            props.load(data);
+            data.close();
+        } catch (java.io.IOException e) {
+            l.error(error_msg);
+        }
+
+        return props;
     }
 }
 
