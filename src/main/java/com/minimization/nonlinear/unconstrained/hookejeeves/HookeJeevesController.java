@@ -412,11 +412,29 @@ public class HookeJeevesController {
             System.out.println("True answer: f(1, 1, 1, 1) = 0.");
         }
 
+        /*
+         * Calculating the objective function value
+         * at the ending point of the local minimum.
+         */
                if (objfun_cls.equals(Rosenbrock.class)) {
             f_x = Rosenbrock.f(endpt, nvars);
         } else if (objfun_cls.equals(     Woods.class)) {
             f_x =      Woods.f(endpt, nvars);
         }
+
+        // Scaling down the ending point coordinate values.
+        for (i = 0; i < nvars; i++) {
+            endpt[i] = _scale_down_double_value(endpt[i], 8);
+        }//                                               ^
+        //                                                |
+        // FIXME: Integer literal (temporary).------------+
+        //                                                |
+        //                                                |
+        // Scaling down the objective function value.     |
+        f_x = _scale_down_double_value(f_x, 8);//         |
+        //                                  ^             |
+        //                                  |             |
+        //                                  +-------------+
 
         HookeJeevesResponsePojo resp_body = new HookeJeevesResponsePojo(
             new HookeJeevesResponsePojoInputs(nvars, startpt, rho),
