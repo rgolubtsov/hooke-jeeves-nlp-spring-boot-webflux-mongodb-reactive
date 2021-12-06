@@ -21,6 +21,9 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -42,6 +45,9 @@ public class HookeJeevesControllerHelper {
     public static final String V_BAR    =    "|";
     public static final String DBG_PREF = "==> ";
     public static final String NEW_LINE = System.lineSeparator();
+
+    // Extra helper constants.
+    private static final int TWELVE = 12;
 
     // Common error messages.
     public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
@@ -241,6 +247,15 @@ public class HookeJeevesControllerHelper {
                   + SPACE    + "constructor called:"
                   + SPACE    + BRACES, latch.getCount());
         }
+    }
+
+    // Helper method. Scales down the given double-precision value
+    //                using the specified scaling factor.
+    public static final double _scale_down_double_value(final double value,
+                                                        final int    scale) {
+
+        return BigDecimal.valueOf(value).setScale((scale > TWELVE) ? TWELVE :
+                                  scale, RoundingMode.HALF_UP).doubleValue();
     }
 }
 
