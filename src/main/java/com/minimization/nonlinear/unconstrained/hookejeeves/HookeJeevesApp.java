@@ -24,6 +24,8 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import com.mongodb.reactivestreams.client.MongoCollection;
 
+import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
+
 /**
  * The startup class of the microservice.
  *
@@ -41,6 +43,9 @@ public class HookeJeevesApp {
     /** The collection object to store data to. */
     public static MongoCollection collection;
 
+    /** The scaling factor for a double-precision value. */
+    public static int scaling_factor;
+
     /**
      * The microservice entry point.
      *
@@ -52,6 +57,10 @@ public class HookeJeevesApp {
         MongoDatabase database = client.getDatabase(TEST_DATABASE);
 
         collection = database.getCollection(INITIAL_DATA_COLL);
+
+        // Getting the scaling factor for a double-precision value
+        // from application properties.
+        scaling_factor = get_scaling_factor();
 
         // Starting up the app.
         SpringApplication.run(HookeJeevesApp.class, args);
