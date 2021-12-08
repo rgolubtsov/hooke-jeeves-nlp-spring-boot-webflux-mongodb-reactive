@@ -424,11 +424,12 @@ public class HookeJeevesController {
 
         // Scaling down the ending point coordinate values.
         for (i = 0; i < nvars; i++) {
-            endpt[i]=_scale_down_double_value(endpt[i], _get_scaling_factor());
+            endpt[i] = scale_down_double_value(endpt[i],
+                HookeJeevesApp.scaling_factor);
         }
 
         // Scaling down the objective function value.
-        f_x = _scale_down_double_value(f_x, _get_scaling_factor());
+        f_x = scale_down_double_value(f_x, HookeJeevesApp.scaling_factor);
 
         HookeJeevesResponsePojo resp_body = new HookeJeevesResponsePojo(
             new HookeJeevesResponsePojoInputs(nvars, startpt, rho),
