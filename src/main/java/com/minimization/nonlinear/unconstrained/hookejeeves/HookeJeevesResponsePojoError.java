@@ -3,7 +3,7 @@
  * HookeJeevesResponsePojoError.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.0
+ * Microservice. Version 0.7.3
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -20,7 +20,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves;
  * The POJO representation, returning in the response
  * when erroneous behavior is occurred.
  *
- * @version 0.7.0
+ * @version 0.7.3
  * @since   0.6.6
  */
 public class HookeJeevesResponsePojoError {
