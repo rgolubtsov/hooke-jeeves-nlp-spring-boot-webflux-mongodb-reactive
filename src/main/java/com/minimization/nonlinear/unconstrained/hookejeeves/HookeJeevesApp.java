@@ -64,15 +64,6 @@ public class HookeJeevesApp {
 
         // Starting up the app.
         SpringApplication.run(HookeJeevesApp.class, args);
-
-        // Making final cleanups.
-        _cleanups_fixate(client);
-    }
-
-    // Helper method: Makes final buffer cleanups, releases resources, etc.
-    private static final void _cleanups_fixate(final MongoClient client) {
-        // Closing the database client.
-//      client.close();
     }
 }
 
