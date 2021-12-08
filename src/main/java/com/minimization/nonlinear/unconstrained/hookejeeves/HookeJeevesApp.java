@@ -3,7 +3,7 @@
  * HookeJeevesApp.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.0
+ * Microservice. Version 0.7.3
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -24,10 +24,12 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import com.mongodb.reactivestreams.client.MongoCollection;
 
+import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
+
 /**
  * The startup class of the microservice.
  *
- * @version 0.7.0
+ * @version 0.7.3
  * @since   0.0.1
  */
 @SpringBootApplication
@@ -41,6 +43,9 @@ public class HookeJeevesApp {
     /** The collection object to store data to. */
     public static MongoCollection collection;
 
+    /** The scaling factor for a double-precision value. */
+    public static int scaling_factor;
+
     /**
      * The microservice entry point.
      *
@@ -52,6 +57,10 @@ public class HookeJeevesApp {
         MongoDatabase database = client.getDatabase(TEST_DATABASE);
 
         collection = database.getCollection(INITIAL_DATA_COLL);
+
+        // Getting the scaling factor for a double-precision value
+        // from application properties.
+        scaling_factor = get_scaling_factor();
 
         // Starting up the app.
         SpringApplication.run(HookeJeevesApp.class, args);
