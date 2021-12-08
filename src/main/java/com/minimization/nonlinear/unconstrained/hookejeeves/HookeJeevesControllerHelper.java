@@ -263,18 +263,29 @@ public class HookeJeevesControllerHelper {
         }
     }
 
-    // Helper method. Scales down the given double-precision value
-    //                using the specified scaling factor.
-    public static final double _scale_down_double_value(final double value,
-                                                        final int    scale) {
+    /**
+     * Scales down the given double-precision value
+     * using the specified scaling factor.
+     *
+     * @param value The double-precision value to scale it down.
+     * @param scale The scaling factor for the given double-precision value.
+     *
+     * @return The double-precision value, a scaled down one.
+     */
+    public static double scale_down_double_value(final double value,
+                                                 final int    scale) {
 
         return BigDecimal.valueOf(value).setScale((scale > TWELVE) ? TWELVE :
                                   scale, RoundingMode.HALF_UP).doubleValue();
     }
 
-    // Helper method. Retrieves the scaling factor for a double-precision value
-    //                from application properties.
-    public static final int _get_scaling_factor() {
+    /**
+     * Retrieves the scaling factor for a double-precision value
+     * from application properties.
+     *
+     * @return The scaling factor for a double-precision value.
+     */
+    public static int get_scaling_factor() {
         Properties props = _get_props(ERR_DBL_VALUE_SCALE_UNABLE_TO_GET);
 
         String dbl_value_scale = props.getProperty(DBL_VALUE_SCALE);
