@@ -51,7 +51,7 @@ $(JAR):
 
 # Making the fourth target (API docs).
 $(API):
-	$(JAVADOC) $(JDFLAGS)
+#	$(JAVADOC) $(JDFLAGS)
 	$(ECHO)
 $(DOX):
 	$(DOXYGEN)
