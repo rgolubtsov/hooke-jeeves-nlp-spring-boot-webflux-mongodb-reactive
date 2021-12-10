@@ -43,12 +43,13 @@ import org.bson.Document;
  */
 public class HookeJeevesControllerHelper {
     // Helper constants.
-    public static final String EQUALS   =    "=";
-    public static final String BRACES   =   "{}";
-    public static final String SPACE    =    " ";
-    public static final String V_BAR    =    "|";
-    public static final String DBG_PREF = "==> ";
-    public static final String NEW_LINE = System.lineSeparator();
+    public static final String EMPTY_STRING =     "";
+    public static final String EQUALS       =    "=";
+    public static final String BRACES       =   "{}";
+    public static final String SPACE        =    " ";
+    public static final String V_BAR        =    "|";
+    public static final String DBG_PREF     = "==> ";
+    public static final String NEW_LINE     = System.lineSeparator();
 
     // Extra helper constants.
     private static final int TWELVE = 12;
