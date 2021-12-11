@@ -3,7 +3,7 @@
  * HookeJeevesControllerHelper.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.3
+ * Microservice. Version 0.7.6
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -38,17 +38,18 @@ import org.bson.Document;
 /**
  * The helper class for the controller and the related ones.
  *
- * @version 0.7.3
+ * @version 0.7.6
  * @since   0.0.1
  */
 public class HookeJeevesControllerHelper {
     // Helper constants.
-    public static final String EQUALS   =    "=";
-    public static final String BRACES   =   "{}";
-    public static final String SPACE    =    " ";
-    public static final String V_BAR    =    "|";
-    public static final String DBG_PREF = "==> ";
-    public static final String NEW_LINE = System.lineSeparator();
+    public static final String EMPTY_STRING =     "";
+    public static final String EQUALS       =    "=";
+    public static final String BRACES       =   "{}";
+    public static final String SPACE        =    " ";
+    public static final String V_BAR        =    "|";
+    public static final String DBG_PREF     = "==> ";
+    public static final String NEW_LINE     = System.lineSeparator();
 
     // Extra helper constants.
     private static final int TWELVE = 12;

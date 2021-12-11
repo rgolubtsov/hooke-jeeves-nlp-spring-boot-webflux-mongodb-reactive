@@ -3,7 +3,7 @@
  * algorithm/HookeJeeves.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.3
+ * Microservice. Version 0.7.6
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -16,14 +16,31 @@
 
 package com.minimization.nonlinear.unconstrained.hookejeeves.algorithm;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
+import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
+
 /**
  * The <code>HookeJeeves</code> class contains methods for solving a nonlinear
  * optimization problem using the algorithm of Hooke and Jeeves.
  *
- * @version 0.7.3
+ * @version 0.7.6
  * @since   0.0.1
  */
 public class HookeJeeves {
+    // Helper constants.
+    private static final String NLP_AFTER              = "After";
+    private static final String NLP_FUNEVALS_F_OF_X    = "funevals, f(x) =";
+    private static final String NLP_AT                 = "at";
+    private static final String NLP_FORMAT_5D          = "%5d";
+    private static final String NLP_FORMAT_POINT_4E    = "%.4e";
+    private static final String NLP_X_OPENING_SQR_BRKT = "x[";
+    private static final String NLP_X_CLOSING_SQR_BRKT = "] =";
+    private static final String NLP_FORMAT_2D          = "%2d";
+
     /** The maximum number of variables. */
     public static final int VARS = 250;
 
@@ -32,6 +49,11 @@ public class HookeJeeves {
 
     /** The maximum number of iterations. */
     public static final int IMAX = 5000;
+
+    /** The SLF4J logger. */
+    private static final Logger l = LoggerFactory.getLogger(
+        MethodHandles.lookup().lookupClass()
+    );
 
     /** The number of function evaluations. */
     private int funevals = 0;
@@ -170,11 +192,19 @@ public class HookeJeeves {
             iters++;
              iadj++;
 
-            System.out.printf("\nAfter %5d funevals, f(x) =  %.4e at\n",
-                funevals, fbefore);
+            // Attribution: Keeping the intermediate debug output
+            //              in the original format, taken from Netlib.
+            l.debug(EMPTY_STRING);
+            l.debug(NLP_AFTER + SPACE + BRACES + SPACE + NLP_FUNEVALS_F_OF_X
+                +       SPACE + SPACE + BRACES + SPACE + NLP_AT,
+                        String.format(NLP_FORMAT_5D,       funevals),
+                        String.format(NLP_FORMAT_POINT_4E, fbefore));
 
             for (j = 0; j < nvars; j++) {
-                System.out.printf("   x[%2d] = %.4e\n", j, xbefore[j]);
+                l.debug(SPACE + SPACE + SPACE + NLP_X_OPENING_SQR_BRKT + BRACES
+                    +                           NLP_X_CLOSING_SQR_BRKT + SPACE
+                    +   BRACES, String.format(NLP_FORMAT_2D,      j          ),
+                                String.format(NLP_FORMAT_POINT_4E,xbefore[j]));
             }
 
             // Find best new point, one coord at a time.

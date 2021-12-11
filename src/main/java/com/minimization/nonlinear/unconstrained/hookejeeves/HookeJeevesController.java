@@ -3,7 +3,7 @@
  * HookeJeevesController.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.3
+ * Microservice. Version 0.7.6
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -44,7 +44,7 @@ import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woo
 /**
  * The controller class of the microservice.
  *
- * @version 0.7.3
+ * @version 0.7.6
  * @since   0.0.1
  */
 @RestController
@@ -79,6 +79,15 @@ public class HookeJeevesController {
 
     private static final String SLASH =   "/";
     private static final String _ID   = "_id";
+
+    private static final String NLP_HOOKE_USED = "HOOKE USED";
+    private static final String NLP_ITERATIONS = "ITERATIONS, AND RETURNED";
+    private static final String NLP_X_OPENING_SQR_BRKT = "x[";
+    private static final String NLP_X_CLOSING_SQR_BRKT = "] =";
+    private static final String NLP_FORMAT_3D          = "%3d";
+    private static final String NLP_FORMAT_15_POINT_7E = "%15.7e";
+    private static final String NLP_TRUE_ANSWER = "True answer: "
+        + "f(1, 1, 1, 1) = 0.";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
@@ -401,16 +410,19 @@ public class HookeJeevesController {
         jj = new HookeJeeves()
             .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
 
-        System.out.println("\n\n\nHOOKE USED " + jj
-                         + " ITERATIONS, AND RETURNED");
+        // Attribution: Keeping the intermediate debug output
+        //              in the original format, taken from Netlib.
+        l.debug(EMPTY_STRING);  l.debug(EMPTY_STRING);  l.debug(EMPTY_STRING);
+        l.debug(NLP_HOOKE_USED + SPACE + BRACES + SPACE + NLP_ITERATIONS, jj);
 
         for (i = 0; i < nvars; i++) {
-            System.out.printf("x[%3d] = %15.7e \n", i, endpt[i]);
+            l.debug(NLP_X_OPENING_SQR_BRKT + BRACES
+                +   NLP_X_CLOSING_SQR_BRKT + SPACE + BRACES,
+                    String.format(NLP_FORMAT_3D,          i        ),
+                    String.format(NLP_FORMAT_15_POINT_7E, endpt[i]));
         }
 
-        if (fx.compareTo(WOODS) == 0) {
-            System.out.println("True answer: f(1, 1, 1, 1) = 0.");
-        }
+        if (fx.compareTo(WOODS) == 0) { l.debug(NLP_TRUE_ANSWER); }
 
         /*
          * Calculating the objective function value
