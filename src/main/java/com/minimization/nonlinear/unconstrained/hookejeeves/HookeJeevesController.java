@@ -36,7 +36,6 @@ import org.bson.Document;
 import static com.mongodb.client.model.Filters.*;
 
 import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
-import        com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesApp;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.HookeJeeves;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Rosenbrock;
 import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woods;
@@ -123,15 +122,17 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
-        l.debug(req_method + SPACE  + SPACE  + SPACE
-              + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + RHO        + EQUALS + BRACES,
-                nvars,
-                startpt0,
-                startpt1,
-                rho);
+        if (HookeJeevesApp.dbg_log_io_enabled) {
+            l.debug(req_method + SPACE  + SPACE  + SPACE
+                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO        + EQUALS + BRACES,
+                    nvars,
+                    startpt0,
+                    startpt1,
+                    rho);
+        }
 
         if (nvars.compareTo(TWO) != 0) {
             is_request_malformed = true;
@@ -181,19 +182,21 @@ public class HookeJeevesController {
 
         boolean is_request_malformed = false;
 
-        l.debug(req_method + SPACE  + SPACE  + SPACE
-              + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + RHO        + EQUALS + BRACES,
-                nvars,
-                startpt0,
-                startpt1,
-                startpt2,
-                startpt3,
-                rho);
+        if (HookeJeevesApp.dbg_log_io_enabled) {
+            l.debug(req_method + SPACE  + SPACE  + SPACE
+                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + RHO        + EQUALS + BRACES,
+                    nvars,
+                    startpt0,
+                    startpt1,
+                    startpt2,
+                    startpt3,
+                    rho);
+        }
 
         if (nvars.compareTo(FOUR) != 0) {
             is_request_malformed = true;
@@ -288,8 +291,10 @@ public class HookeJeevesController {
             req_method = RequestMethod.POST.toString();
         }
 
-        l.debug(req_method  + SPACE + SPACE
-              + FX + EQUALS + BRACES, fx);
+        if (HookeJeevesApp.dbg_log_io_enabled) {
+            l.debug(req_method  + SPACE + SPACE
+                  + FX + EQUALS + BRACES, fx);
+        }
 
         if ((fx.compareTo(ROSENBROCK) != 0) && (fx.compareTo(WOODS) != 0)) {
             is_request_malformed = true;
@@ -331,15 +336,17 @@ public class HookeJeevesController {
                 is_request_malformed = true;
             }
 
-            l.debug(req_method + SPACE  + SPACE
-                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + RHO        + EQUALS + BRACES,
-                    nvars,
-                    startpt[0],
-                    startpt[1],
-                    rho);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(req_method + SPACE  + SPACE
+                      + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + RHO        + EQUALS + BRACES,
+                        nvars,
+                        startpt[0],
+                        startpt[1],
+                        rho);
+            }
 
             if (is_request_malformed) {
                 resp_body_err = new HookeJeevesResponsePojoError(
@@ -379,19 +386,21 @@ public class HookeJeevesController {
                 is_request_malformed = true;
             }
 
-            l.debug(req_method + SPACE  + SPACE
-                  + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
-                  + RHO        + EQUALS + BRACES,
-                    nvars,
-                    startpt[0],
-                    startpt[1],
-                    startpt[2],
-                    startpt[3],
-                    rho);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(req_method + SPACE  + SPACE
+                      + NVARS      + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT0   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT1   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT2   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + STARTPT3   + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                      + RHO        + EQUALS + BRACES,
+                        nvars,
+                        startpt[0],
+                        startpt[1],
+                        startpt[2],
+                        startpt[3],
+                        rho);
+            }
 
             if (is_request_malformed) {
                 resp_body_err = new HookeJeevesResponsePojoError(
@@ -410,6 +419,7 @@ public class HookeJeevesController {
         jj = new HookeJeeves()
             .hooke(nvars, startpt, endpt, rho, epsilon, itermax, objfun_cls);
 
+        if (HookeJeevesApp.dbg_log_interim_enabled) {
         // Attribution: Keeping the intermediate debug output
         //              in the original format, taken from Netlib.
         l.debug(EMPTY_STRING);  l.debug(EMPTY_STRING);  l.debug(EMPTY_STRING);
@@ -422,7 +432,7 @@ public class HookeJeevesController {
                     String.format(NLP_FORMAT_15_POINT_7E, endpt[i]));
         }
 
-        if (fx.compareTo(WOODS) == 0) { l.debug(NLP_TRUE_ANSWER); }
+        if (fx.compareTo(WOODS) == 0) { l.debug(NLP_TRUE_ANSWER); }}
 
         /*
          * Calculating the objective function value

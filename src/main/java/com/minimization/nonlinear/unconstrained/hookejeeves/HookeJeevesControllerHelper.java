@@ -52,9 +52,12 @@ public class HookeJeevesControllerHelper {
     public static final String NEW_LINE     = System.lineSeparator();
 
     // Extra helper constants.
+    private static final String YES = "yes";
     private static final int TWELVE = 12;
 
     // Common error messages.
+    public static final String ERR_DBG_LOG_UNABLE_TO_ACTIVATE
+        = "Unable to activate debug log.";
     public static final String ERR_DBL_VALUE_SCALE_UNABLE_TO_GET
         = "Unable to get scaling factor for double-precision value.";
     public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
@@ -75,6 +78,12 @@ public class HookeJeevesControllerHelper {
 
     /** The application properties filename. */
     private static final String APP_PROPS = "application.properties";
+
+    // Application properties keys for the logger.
+    private static final String DBG_LOG_IO_ENABLED
+        = "logger.debug.io.enabled";
+    private static final String DBG_LOG_INTERIM_ENABLED
+        = "logger.debug.intermediate.enabled";
 
     // Application properties keys for double-precision
     // values-related manipulations.
@@ -121,9 +130,11 @@ public class HookeJeevesControllerHelper {
                            //     to be effectively "hot".))
 //          s.request(Long.MAX_VALUE);
 
-            l.debug(DBG_PREF + PUT_SUBSCRIBER_S
-                  + SPACE    + "onSubscribe() called:"
-                  + SPACE    + BRACES, s);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + PUT_SUBSCRIBER_S
+                      + SPACE    + "onSubscribe() called:"
+                      + SPACE    + BRACES, s);
+            }
         }
 
         /**
@@ -136,9 +147,11 @@ public class HookeJeevesControllerHelper {
         public void onNext(final Document_ document_) {
             // Dummy for a while...
 
-            l.debug(DBG_PREF + PUT_SUBSCRIBER_S
-                  + SPACE    + "onNext() called:"
-                  + SPACE    + BRACES, document_);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + PUT_SUBSCRIBER_S
+                      + SPACE    + "onNext() called:"
+                      + SPACE    + BRACES, document_);
+            }
         }
 
         /**
@@ -149,7 +162,9 @@ public class HookeJeevesControllerHelper {
          */
         @Override
         public void onComplete() {
-            l.info(PUT_ON_COMPLETE);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(PUT_ON_COMPLETE);
+            }
         }
 
         /**
@@ -193,9 +208,11 @@ public class HookeJeevesControllerHelper {
         public void onNext(final Document_ document_) {
             document = (org.bson.Document) document_;
 
-            l.debug(DBG_PREF + GET_SUBSCRIBER_S
-                  + SPACE    + "onNext() called:"
-                  + SPACE    + BRACES, document);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                      + SPACE    + "onNext() called:"
+                      + SPACE    + BRACES, document);
+            }
         }
 
         /**
@@ -208,7 +225,9 @@ public class HookeJeevesControllerHelper {
         public void onComplete() {
             latch.countDown();
 
-            l.info(GET_ON_COMPLETE);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(GET_ON_COMPLETE);
+            }
         }
 
         /**
@@ -237,8 +256,10 @@ public class HookeJeevesControllerHelper {
                 e.printStackTrace();
             }
 
-            l.debug(DBG_PREF + GET_SUBSCRIBER_S
-                  + SPACE    + "await() called.");
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                      + SPACE    + "await() called.");
+            }
         }
 
         /**
@@ -247,9 +268,11 @@ public class HookeJeevesControllerHelper {
          * @return The BSON document.
          */
         public Document getDocument() {
-            l.debug(DBG_PREF + GET_SUBSCRIBER_S
-                  + SPACE    + "getDocument() called:"
-                  + SPACE    + BRACES, document);
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                      + SPACE    + "getDocument() called:"
+                      + SPACE    + BRACES, document);
+            }
 
             return document;
         }
@@ -258,10 +281,49 @@ public class HookeJeevesControllerHelper {
         public GetSubscriber() {
             latch = new CountDownLatch(1);
 
-            l.debug(DBG_PREF + GET_SUBSCRIBER_S
-                  + SPACE    + "constructor called:"
-                  + SPACE    + BRACES, latch.getCount());
+            if (HookeJeevesApp.dbg_log_io_enabled) {
+                l.debug(DBG_PREF + GET_SUBSCRIBER_S
+                      + SPACE    + "constructor called:"
+                      + SPACE    + BRACES, latch.getCount());
+            }
         }
+    }
+
+    /**
+     * Identifies whether data I/O debug logging is enabled by retrieving
+     * the corresponding setting from application properties.
+     *
+     * @return <code>true</code> if data I/O debug logging is enabled,
+     *         <code>false</code> otherwise.
+     */
+    public static boolean is_dbg_log_io_enabled() {
+        Properties props = _get_props(ERR_DBG_LOG_UNABLE_TO_ACTIVATE);
+
+        String dbg_log_io_enabled = props.getProperty(DBG_LOG_IO_ENABLED);
+
+        if ((dbg_log_io_enabled != null)
+            && (dbg_log_io_enabled.compareTo(YES) == 0)) { return true; }
+
+        return false;
+    }
+
+    /**
+     * Identifies whether intermediate (computational) debug logging is enabled
+     * by retrieving the corresponding setting from application properties.
+     *
+     * @return <code>true</code> if intermediate (computational) debug logging
+     *         is enabled, <code>false</code> otherwise.
+     */
+    public static boolean is_dbg_log_interim_enabled() {
+        Properties props = _get_props(ERR_DBG_LOG_UNABLE_TO_ACTIVATE);
+
+        String dbg_log_interim_enabled
+            = props.getProperty(DBG_LOG_INTERIM_ENABLED);
+
+        if ((dbg_log_interim_enabled != null)
+            && (dbg_log_interim_enabled.compareTo(YES) == 0)) { return true; }
+
+        return false;
     }
 
     /**
