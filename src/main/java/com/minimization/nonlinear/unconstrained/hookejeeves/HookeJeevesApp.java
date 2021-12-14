@@ -43,6 +43,12 @@ public class HookeJeevesApp {
     /** The collection object to store data to. */
     public static MongoCollection collection;
 
+    /** The data I/O debug logging enabler. */
+    public static boolean dbg_log_io_enabled;
+
+    /** The intermediate (computational) debug logging enabler. */
+    public static boolean dbg_log_interim_enabled;
+
     /** The scaling factor for a double-precision value. */
     public static int scaling_factor;
 
@@ -57,6 +63,10 @@ public class HookeJeevesApp {
         MongoDatabase database = client.getDatabase(TEST_DATABASE);
 
         collection = database.getCollection(INITIAL_DATA_COLL);
+
+        // Identifying whether debug logging is enabled.
+        dbg_log_io_enabled      = is_dbg_log_io_enabled();
+        dbg_log_interim_enabled = is_dbg_log_interim_enabled();
 
         // Getting the scaling factor for a double-precision value
         // from application properties.
