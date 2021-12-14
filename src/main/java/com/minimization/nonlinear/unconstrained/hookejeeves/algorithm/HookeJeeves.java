@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import        com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesApp;
 import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
 
 /**
@@ -192,6 +193,7 @@ public class HookeJeeves {
             iters++;
              iadj++;
 
+            if (HookeJeevesApp.dbg_log_interim_enabled) {
             // Attribution: Keeping the intermediate debug output
             //              in the original format, taken from Netlib.
             l.debug(EMPTY_STRING);
@@ -205,7 +207,7 @@ public class HookeJeeves {
                     +                           NLP_X_CLOSING_SQR_BRKT + SPACE
                     +   BRACES, String.format(NLP_FORMAT_2D,      j          ),
                                 String.format(NLP_FORMAT_POINT_4E,xbefore[j]));
-            }
+            }}
 
             // Find best new point, one coord at a time.
             for (i = 0; i < nvars; i++) {
