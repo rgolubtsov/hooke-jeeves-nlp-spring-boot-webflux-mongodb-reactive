@@ -56,10 +56,8 @@ public class HookeJeevesControllerHelper {
     private static final int TWELVE = 12;
 
     // Common error messages.
-    public static final String ERR_DBG_LOG_UNABLE_TO_ACTIVATE
-        = "Unable to activate debug log.";
-    public static final String ERR_DBL_VALUE_SCALE_UNABLE_TO_GET
-        = "Unable to get scaling factor for double-precision value.";
+    public static final String ERR_APP_PROPS_UNABLE_TO_GET
+        = "Unable to get application properties.";
     public static final String ERR_REQ_PARAMS_ROSENBROCK_NEEDS_TWO_VARS
         = "The Rosenbrock function requires exactly two starting point "
         + "coordinates. Please check your inputs.";
@@ -297,9 +295,8 @@ public class HookeJeevesControllerHelper {
      *         <code>false</code> otherwise.
      */
     public static boolean is_dbg_log_io_enabled() {
-        Properties props = _get_props(ERR_DBG_LOG_UNABLE_TO_ACTIVATE);
-
-        String dbg_log_io_enabled = props.getProperty(DBG_LOG_IO_ENABLED);
+        String dbg_log_io_enabled
+            = HookeJeevesApp.props.getProperty(DBG_LOG_IO_ENABLED);
 
         if ((dbg_log_io_enabled != null)
             && (dbg_log_io_enabled.compareTo(YES) == 0)) { return true; }
@@ -315,10 +312,8 @@ public class HookeJeevesControllerHelper {
      *         is enabled, <code>false</code> otherwise.
      */
     public static boolean is_dbg_log_interim_enabled() {
-        Properties props = _get_props(ERR_DBG_LOG_UNABLE_TO_ACTIVATE);
-
         String dbg_log_interim_enabled
-            = props.getProperty(DBG_LOG_INTERIM_ENABLED);
+            = HookeJeevesApp.props.getProperty(DBG_LOG_INTERIM_ENABLED);
 
         if ((dbg_log_interim_enabled != null)
             && (dbg_log_interim_enabled.compareTo(YES) == 0)) { return true; }
@@ -349,9 +344,8 @@ public class HookeJeevesControllerHelper {
      * @return The scaling factor for a double-precision value.
      */
     public static int get_scaling_factor() {
-        Properties props = _get_props(ERR_DBL_VALUE_SCALE_UNABLE_TO_GET);
-
-        String dbl_value_scale = props.getProperty(DBL_VALUE_SCALE);
+        String dbl_value_scale
+            = HookeJeevesApp.props.getProperty(DBL_VALUE_SCALE);
 
         if (dbl_value_scale != null) {
             return Integer.parseInt(dbl_value_scale); // <== May throw NFE !
@@ -361,7 +355,7 @@ public class HookeJeevesControllerHelper {
     }
 
     // Helper method. Used to get the application properties object.
-    private static final Properties _get_props(final String error_msg) {
+    public static final Properties _get_props() {
         Properties props = new Properties();
 
         ClassLoader loader
@@ -373,7 +367,7 @@ public class HookeJeevesControllerHelper {
             props.load(data);
             data.close();
         } catch (java.io.IOException e) {
-            l.error(error_msg);
+            l.error(ERR_APP_PROPS_UNABLE_TO_GET);
         }
 
         return props;
