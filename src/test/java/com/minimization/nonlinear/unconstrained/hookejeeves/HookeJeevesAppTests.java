@@ -3,7 +3,7 @@
  * HookeJeevesAppTests.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.7.6
+ * Microservice. Version 0.8.5
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -29,7 +29,7 @@ import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesCo
 /**
  * The test class for the microservice.
  *
- * @version 0.7.6
+ * @version 0.8.5
  * @since   0.0.1
  */
 @SpringBootTest
