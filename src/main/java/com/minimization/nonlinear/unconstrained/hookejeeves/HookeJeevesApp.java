@@ -24,6 +24,8 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import com.mongodb.reactivestreams.client.MongoCollection;
 
+import java.util.Properties;
+
 import static com.minimization.nonlinear.unconstrained.hookejeeves.HookeJeevesControllerHelper.*;
 
 /**
@@ -42,6 +44,9 @@ public class HookeJeevesApp {
 
     /** The collection object to store data to. */
     public static MongoCollection collection;
+
+    /** The application properties object. */
+    public static Properties props;
 
     /** The data I/O debug logging enabler. */
     public static boolean dbg_log_io_enabled;
@@ -63,6 +68,9 @@ public class HookeJeevesApp {
         MongoDatabase database = client.getDatabase(TEST_DATABASE);
 
         collection = database.getCollection(INITIAL_DATA_COLL);
+
+        // Getting the application properties object.
+        props = _get_props();
 
         // Identifying whether debug logging is enabled.
         dbg_log_io_enabled      = is_dbg_log_io_enabled();
