@@ -3,7 +3,7 @@
  * algorithm/Woods.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.8.5
+ * Microservice. Version 0.8.8
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -23,7 +23,7 @@ package com.minimization.nonlinear.unconstrained.hookejeeves.algorithm;
  * <br />The objective function in this case is the so-called
  * &quot;Woods&quot; function.
  *
- * @version 0.8.5
+ * @version 0.8.8
  * @since   0.0.1
  */
 public final class Woods {

@@ -3,7 +3,7 @@
  * HookeJeevesController.java
  * ============================================================================
  * The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
- * Microservice. Version 0.8.5
+ * Microservice. Version 0.8.8
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing the nonlinear unconstrained
@@ -43,7 +43,7 @@ import        com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woo
 /**
  * The controller class of the microservice.
  *
- * @version 0.8.5
+ * @version 0.8.8
  * @since   0.0.1
  */
 @RestController
