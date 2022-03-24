@@ -11,7 +11,7 @@
 
 * **[Building](#building)**
 * **[Running](#running)**
-* **[Operating](#operating)**
+* **[Consuming](#consuming)**
 
 ## Building
 
@@ -76,7 +76,7 @@ $ java -jar target/hooke-jeeves-0.8.8.jar; echo $?
 ...
 ```
 
-## Operating
+## Consuming
 
 **Store** (put) initial guess data to the database using default values:
 
