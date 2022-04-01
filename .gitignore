@@ -2,7 +2,7 @@
 # .gitignore
 # =============================================================================
 # The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
-# Microservice. Version 0.8.8
+# Microservice. Version 0.8.9
 # =============================================================================
 # A Spring Boot-based application, designed and intended to be run
 # as a microservice, implementing the nonlinear unconstrained

@@ -2,7 +2,7 @@
 # Joxyfile
 # =============================================================================
 # The Hooke and Jeeves nonlinear unconstrained minimization algorithm.
-# Microservice. Version 0.8.8
+# Microservice. Version 0.8.9
 # =============================================================================
 # A Spring Boot-based application, designed and intended to be run
 # as a microservice, implementing the nonlinear unconstrained
@@ -26,6 +26,6 @@ com.minimization.nonlinear.unconstrained.hookejeeves.algorithm.Woods
 -nodeprecated
 -nohelp
 -windowtitle  "The Hooke and Jeeves NLP algorithm. Microservice API"
--header       "<b>Hooke and Jeeves NLP alg.<br />Microservice API (v0.8.8)</b>"
+-header       "<b>Hooke and Jeeves NLP alg.<br />Microservice API (v0.8.9)</b>"
 
 # vim:set nu et ts=4 sw=4:
