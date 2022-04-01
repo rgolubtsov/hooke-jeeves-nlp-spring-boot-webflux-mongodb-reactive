@@ -15,7 +15,7 @@
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `mongodb`, `doxygen`):
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.4 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `mongodb`, `doxygen`):
 
 ```
 $ sudo apt-get update && \
