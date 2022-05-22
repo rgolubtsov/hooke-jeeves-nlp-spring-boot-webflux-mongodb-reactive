@@ -72,7 +72,7 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/hooke-jeeves-0.8.9.jar; echo $?
+$ java -jar target/hooke-jeeves-0.8.10.jar; echo $?
 ...
 ```
 
