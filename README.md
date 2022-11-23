@@ -15,11 +15,47 @@
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.4 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `mongodb`, `doxygen`):
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 22.04.1 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `doxygen`):
 
 ```
 $ sudo apt-get update && \
-  sudo apt-get install openjdk-11-jdk-headless make mongodb doxygen -y
+  sudo apt-get install openjdk-11-jdk-headless make doxygen -y
+```
+
+**MongoDB** has to be installed from its official website, because its support has been dropped in Ubuntu 22.04 LTS and their official repositories doesn't contain prebuilt packages of MongoDB for this Ubuntu release. The following compound command will download both MongoDB server and shell packages, and install them into the system:
+
+```
+$ curl -LOs https://repo.mongodb.org/apt/ubuntu/dists/jammy/mongodb-org/6.0/multiverse/binary-amd64/mongodb-org-server_6.0.3_amd64.deb \
+       -LOs https://repo.mongodb.org/apt/ubuntu/dists/jammy/mongodb-org/6.0/multiverse/binary-amd64/mongodb-mongosh_1.6.0_amd64.deb && \
+  sudo dpkg -i mongodb-org-server_6.0.3_amd64.deb \
+               mongodb-mongosh_1.6.0_amd64.deb
+...
+```
+
+Then it needs to create a dedicated directory where MongoDB server should store and manage databases. By default it should be `/var/lib/mongodb/`:
+
+```
+$ sudo mkdir -p /var/lib/mongodb && \
+  sudo chown -R mongodb:mongodb /var/lib/mongodb
+```
+
+Start up MongoDB server and then check its execution status:
+
+```
+$ sudo systemctl start mongod
+$
+$ systemctl status mongod -l
+● mongod.service - MongoDB Database Server
+     Loaded: loaded (/lib/systemd/system/mongod.service; disabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-11-23 17:50:30 +03; 2min 3s ago
+       Docs: https://docs.mongodb.org/manual
+   Main PID: 6766 (mongod)
+     Memory: 65.5M
+        CPU: 2.213s
+     CGroup: /system.slice/mongod.service
+             └─6766 /usr/bin/mongod --config /etc/mongod.conf
+
+Nov 23 17:50:30 <hostname> systemd[1]: Started MongoDB Database Server.
 ```
 
 **Build** the microservice using **Maven Wrapper**:
@@ -78,7 +114,9 @@ $ java -jar target/hooke-jeeves-0.8.10.jar; echo $?
 
 ## Consuming
 
-**Store** (put) initial guess data to the database using default values:
+Suppose MongoDB database server is up and running, then the following communication with the microservice is available from a user side:
+
+1. **Store** (put) initial guess data to the database using default values:
 
 HTTP request param | *Rosenbrock* test problem | *Woods* test problem
 ------------------ | ------------------------- | --------------------
@@ -105,7 +143,7 @@ $ curl -vXPUT 'http://localhost:8765/store/woods?nvars=4&startpt0=-4.4444&startp
 ...
 ```
 
-**Solve** a nonlinear optimization problem using the algorithm of Hooke and Jeeves (against **Rosenbrock** or **Woods** test function):
+2. **Solve** a nonlinear optimization problem using the algorithm of Hooke and Jeeves (against **Rosenbrock** or **Woods** test function):
 
 ```
 $ curl -v http://localhost:8765/solve      # <== GET.  Defaults to ?fx=rosenbrock
