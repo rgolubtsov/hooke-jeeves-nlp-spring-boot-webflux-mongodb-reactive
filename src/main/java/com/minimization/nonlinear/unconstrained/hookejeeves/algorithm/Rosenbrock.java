@@ -9,7 +9,7 @@
  * as a microservice, implementing the nonlinear unconstrained
  * minimization algorithm of Hooke and Jeeves.
  * ============================================================================
- * Written by Radislav (Radicchio) Golubtsov, 2020-2023
+ * Written by Radislav (Radicchio) Golubtsov, 2020-2024
  *
  * (See the LICENSE file at the top of the source tree.)
  */
