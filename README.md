@@ -15,7 +15,7 @@
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 22.04.1 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `doxygen`):
+The microservice might be built and run successfully under **Ubuntu Server (Ubuntu 22.04.1 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `doxygen`):
 
 ```
 $ sudo apt-get update && \
