@@ -247,7 +247,7 @@ public class HookeJeevesController {
     /**
      * The &quot;<code>/solve</code>&quot; <b>GET</b> endpoint.
      * <br />
-     * <br />Retrieves initial guess data form the database
+     * <br />Retrieves initial guess data from the database
      * and calls the main optimization method against them.
      * <br />In short, it solves the nonlinear optimization problem.
      *
@@ -463,7 +463,7 @@ public class HookeJeevesController {
     /**
      * The &quot;<code>/solve</code>&quot; <b>POST</b> endpoint.
      * <br />
-     * <br />Retrieves initial guess data form the database
+     * <br />Retrieves initial guess data from the database
      * and calls the main optimization method against them.
      * <br />In short, it solves the nonlinear optimization problem.
      *
