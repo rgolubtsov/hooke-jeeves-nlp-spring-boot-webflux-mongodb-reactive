@@ -1,4 +1,4 @@
-# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice [![Build Status](https://travis-ci.org/rgolubtsov/hooke-jeeves-nlp-spring-boot-webflux-mongodb-reactive.svg?branch=master)](https://travis-ci.org/rgolubtsov/hooke-jeeves-nlp-spring-boot-webflux-mongodb-reactive)
+# The Hooke and Jeeves nonlinear unconstrained minimization algorithm. Microservice :rocket:
 
 ![Hooke and Jeeves NLP](static/img/doxygen/hookejeeves-doxygen-logo-260x50.png)
 
@@ -159,3 +159,7 @@ $ curl -vd '' http://localhost:8765/solve?fx=rosenbrock
 $ curl -vd '' http://localhost:8765/solve?fx=woods
 ...
 ```
+
+---
+
+:floppy_disk:
